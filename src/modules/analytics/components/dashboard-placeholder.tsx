@@ -1,17 +1,18 @@
 import {
-  ChartNoAxesColumn,
-  ClipboardList,
+  BadgePercent,
+  BatteryCharging,
+  CircleDollarSign,
   Clock3,
-  FolderKanban,
+  FileWarning,
+  Gauge,
   LogOut,
   PanelsTopLeft,
-  ShieldCheck,
   SunMedium,
-  UsersRound,
+  TrendingUp,
 } from "lucide-react";
 
+import { getErpDashboardSnapshot } from "@/modules/analytics";
 import type { DemoUser } from "@/modules/auth";
-import { getCrmDashboardSnapshot } from "@/modules/crm";
 import { Button } from "@/modules/shared/ui/button";
 import {
   Card,
@@ -30,50 +31,46 @@ const modules = [
   ["Ferramentas", "/app/solar#ferramentas"],
 ];
 
-const verticalStatus = [
-  {
-    description: "Cookie HTTP-only",
-    Icon: ShieldCheck,
-    title: "Sessao demo",
-  },
-  {
-    description: "Rota /app protegida",
-    Icon: FolderKanban,
-    title: "Area ERP",
-  },
-  {
-    description: "Revisao rigorosa 02",
-    Icon: Clock3,
-    title: "Checkpoint atual",
-  },
-];
-
-export function DashboardPlaceholder({ user }: { user: DemoUser }) {
-  const crmSnapshot = getCrmDashboardSnapshot();
+export function ErpDashboard({ user }: { user: DemoUser }) {
+  const dashboard = getErpDashboardSnapshot();
   const kpis = [
     {
+      Icon: CircleDollarSign,
+      hint: "Pipeline ponderado",
       label: "Receita prevista",
-      value: crmSnapshot.expectedRevenue,
-      hint: "Valor ponderado do pipeline",
-      Icon: ChartNoAxesColumn,
+      value: dashboard.expectedRevenue,
     },
     {
-      label: "Pipeline aberto",
-      value: crmSnapshot.pipelineValue,
-      hint: `${crmSnapshot.accountsCount} contas seedadas`,
+      Icon: BadgePercent,
+      hint: "Projetos solares / oportunidades",
+      label: "Taxa de conversao",
+      value: dashboard.conversionRate,
+    },
+    {
       Icon: SunMedium,
+      hint: `${dashboard.capacityKw.toLocaleString("pt-BR", {
+        maximumFractionDigits: 1,
+      })} kWp ativos`,
+      label: "Projetos ativos",
+      value: String(dashboard.projectsActive),
     },
     {
-      label: "Leads novos",
-      value: String(crmSnapshot.newLeadsCount),
-      hint: "Lead e qualificacao",
-      Icon: UsersRound,
+      Icon: BatteryCharging,
+      hint: "Economia estimada nos projetos",
+      label: "Economia mensal",
+      value: dashboard.savingsEstimated,
     },
     {
-      label: "Atividades abertas",
-      value: String(crmSnapshot.openActivitiesCount),
-      hint: `${crmSnapshot.primaryContactsCount} contatos principais`,
-      Icon: ClipboardList,
+      Icon: FileWarning,
+      hint: "Documentos dos projetos",
+      label: "Pendencias",
+      value: String(dashboard.pendingDocuments),
+    },
+    {
+      Icon: Gauge,
+      hint: "Progresso medio dos projetos",
+      label: "Capacidade",
+      value: `${dashboard.utilization}%`,
     },
   ];
 
@@ -90,7 +87,7 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
                 Solar Care ERP
               </p>
               <h1 className="truncate text-2xl font-bold">
-                Dashboard Solar Care
+                Dashboard ERP Solar
               </h1>
             </div>
           </div>
@@ -130,7 +127,7 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
         </nav>
 
         <div className="grid gap-6">
-          <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {kpis.map(({ Icon, ...kpi }) => (
               <Card key={kpi.label}>
                 <CardHeader>
@@ -150,35 +147,50 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
             ))}
           </section>
 
-          <section className="grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
+          <section className="grid gap-4 xl:grid-cols-[1fr_1fr]">
             <Card>
               <CardHeader>
-                <CardTitle>Fila operacional</CardTitle>
+                <CardTitle>Radar comercial</CardTitle>
                 <CardDescription>
-                  Primeiras tarefas dos seeds CRM.
+                  Receita, propostas e proximas atividades.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="rounded-lg border border-[color:var(--line)]">
-                  <div className="grid grid-cols-[minmax(0,1fr)_120px_80px] gap-3 border-b border-[color:var(--line)] px-3 py-3 text-xs font-semibold uppercase tracking-normal text-[color:var(--muted)]">
-                    <span>Cliente</span>
-                    <span>Acao</span>
-                    <span className="text-right">Prazo</span>
-                  </div>
-                  {crmSnapshot.workQueue.map((item) => (
+                <div className="grid gap-3">
+                  {dashboard.workQueues.proposals.map((proposal) => (
                     <div
-                      className="grid grid-cols-[minmax(0,1fr)_120px_80px] gap-3 border-b border-[color:var(--line)] px-3 py-3 text-sm last:border-b-0"
-                      key={item.id}
+                      className="rounded-lg border border-[color:var(--line)] p-3"
+                      key={proposal.id}
                     >
-                      <span className="truncate font-medium">
-                        {item.accountName}
-                      </span>
-                      <span className="truncate text-[color:var(--muted)]">
-                        {item.action}
-                      </span>
-                      <span className="text-right font-semibold">
-                        {item.deadline}
-                      </span>
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-sm font-semibold">
+                          Proposta {proposal.status}
+                        </span>
+                        <span className="text-sm font-bold">
+                          {proposal.value.toLocaleString("pt-BR", {
+                            currency: "BRL",
+                            maximumFractionDigits: 0,
+                            style: "currency",
+                          })}
+                        </span>
+                      </div>
+                      <div className="mt-3 h-2 overflow-hidden rounded-full bg-[color:var(--surface-muted)]">
+                        <div
+                          className="h-full rounded-full bg-[color:var(--field)]"
+                          style={{
+                            width: `${Math.max(
+                              Math.min(
+                                Math.round(100 - proposal.paybackMonths),
+                                100,
+                              ),
+                              0,
+                            )}%`,
+                          }}
+                        />
+                      </div>
+                      <p className="mt-2 text-xs text-[color:var(--muted)]">
+                        Payback {proposal.paybackMonths} meses
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -187,34 +199,46 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
 
             <Card>
               <CardHeader>
-                <CardTitle>Pipeline seedado</CardTitle>
+                <CardTitle>Capacidade de instalacao</CardTitle>
                 <CardDescription>
-                  Oportunidades prontas para a tela CRM do proximo commit.
+                  Marcos pendentes e progresso medio operacional.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-3">
-                  {crmSnapshot.pipelineStages.map((opportunity) => (
+                <div className="mb-4 rounded-lg border border-[color:var(--line)] bg-[color:var(--surface-muted)] p-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-sm font-semibold">
+                      Progresso medio
+                    </span>
+                    <span className="text-sm font-bold">
+                      {dashboard.utilization}%
+                    </span>
+                  </div>
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-white">
                     <div
-                      className="rounded-lg border border-[color:var(--line)] p-3"
-                      key={opportunity.id}
+                      className="h-full rounded-full bg-[color:var(--sky)]"
+                      style={{ width: `${dashboard.utilization}%` }}
+                    />
+                  </div>
+                </div>
+                <div className="grid gap-3">
+                  {dashboard.workQueues.milestones.map((milestone) => (
+                    <div
+                      className="flex items-start gap-3 rounded-lg border border-[color:var(--line)] p-3"
+                      key={milestone.id}
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <p className="truncate text-sm font-semibold">
-                            {opportunity.accountName}
-                          </p>
-                          <p className="truncate text-xs text-[color:var(--muted)]">
-                            {opportunity.title}
-                          </p>
-                        </div>
-                        <span className="shrink-0 rounded-md bg-[color:var(--field-soft)] px-2 py-1 text-xs font-semibold text-[color:var(--field)]">
-                          {opportunity.label}
-                        </span>
+                      <Clock3
+                        aria-hidden="true"
+                        className="mt-0.5 size-4 shrink-0 text-[color:var(--field)]"
+                      />
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-semibold">
+                          {milestone.title}
+                        </p>
+                        <p className="truncate text-xs text-[color:var(--muted)]">
+                          {milestone.owner} - {milestone.status}
+                        </p>
                       </div>
-                      <p className="mt-3 text-sm font-bold">
-                        {opportunity.value}
-                      </p>
                     </div>
                   ))}
                 </div>
@@ -222,19 +246,96 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
             </Card>
           </section>
 
-          <section className="grid gap-4 md:grid-cols-3">
-            {verticalStatus.map(({ Icon, description, title }) => (
-              <Card key={title}>
-                <CardHeader>
-                  <Icon
-                    aria-hidden="true"
-                    className="size-5 text-[color:var(--field)]"
-                  />
-                  <CardTitle className="text-sm">{title}</CardTitle>
-                  <CardDescription>{description}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
+          <section className="grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
+            <Card>
+              <CardHeader>
+                <CardTitle>Fila operacional</CardTitle>
+                <CardDescription>
+                  Atividades abertas do CRM e operacao solar.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="rounded-lg border border-[color:var(--line)]">
+                  <div className="grid grid-cols-[minmax(0,1fr)_120px_80px] gap-3 border-b border-[color:var(--line)] px-3 py-3 text-xs font-semibold uppercase tracking-normal text-[color:var(--muted)]">
+                    <span>Atividade</span>
+                    <span>Status</span>
+                    <span className="text-right">Prazo</span>
+                  </div>
+                  {dashboard.workQueues.activities.map((activity) => (
+                    <div
+                      className="grid grid-cols-[minmax(0,1fr)_120px_80px] gap-3 border-b border-[color:var(--line)] px-3 py-3 text-sm last:border-b-0"
+                      key={activity.id}
+                    >
+                      <span className="truncate font-medium">
+                        {activity.title}
+                      </span>
+                      <span className="truncate text-[color:var(--muted)]">
+                        {activity.status}
+                      </span>
+                      <span className="text-right font-semibold">
+                        {activity.dueLabel}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Pendencias documentais</CardTitle>
+                <CardDescription>
+                  Itens que podem atrasar homologacao ou instalacao.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-3">
+                  {dashboard.workQueues.documents.length > 0 ? (
+                    dashboard.workQueues.documents.map((documentItem) => (
+                      <div
+                        className="rounded-lg border border-[color:var(--line)] p-3"
+                        key={documentItem.id}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-semibold">
+                              {documentItem.title}
+                            </p>
+                            <p className="truncate text-xs text-[color:var(--muted)]">
+                              {documentItem.owner}
+                            </p>
+                          </div>
+                          <span className="shrink-0 rounded-md bg-[color:var(--solar-soft)] px-2 py-1 text-xs font-semibold text-[#6c4a08]">
+                            {documentItem.dueLabel}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="rounded-lg border border-[color:var(--line)] bg-[color:var(--surface-muted)] p-3 text-sm text-[color:var(--muted)]">
+                      Nenhuma pendencia documental critica.
+                    </p>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          <section className="rounded-lg border border-[color:var(--line)] bg-white p-4 shadow-sm">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-normal text-[color:var(--sky)]">
+                  Saude da operacao
+                </p>
+                <h2 className="text-xl font-bold">
+                  Receita aprovada: {dashboard.revenueApproved}
+                </h2>
+              </div>
+              <div className="flex items-center gap-3 text-sm font-semibold text-[color:var(--field)]">
+                <TrendingUp aria-hidden="true" className="size-5" />
+                {dashboard.pipelineValue} em pipeline aberto
+              </div>
+            </div>
           </section>
         </div>
       </section>

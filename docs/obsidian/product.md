@@ -24,7 +24,7 @@ A primeira tela publica e uma pagina institucional da empresa ficticia `Solar Ca
 
 1. Capturar lead pela landing institucional da instaladora solar com formulario demo local.
 2. Entrar no ERP com usuario demo automatico via `/demo-login`.
-3. Visualizar dashboard protegido com receita prevista, projetos ativos, pendencias e economia estimada.
+3. Visualizar dashboard protegido com receita prevista, taxa de conversao, projetos ativos, capacidade, pendencias e economia estimada.
 4. Gerenciar contas, contatos, oportunidades e atividades seedadas em workspace CRM inspirado no Twenty.
 5. Visualizar projetos solares conectados a oportunidades CRM.
 6. Acompanhar proposta, vistoria, equipamentos e status de instalacao.

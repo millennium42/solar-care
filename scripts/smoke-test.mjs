@@ -6,9 +6,9 @@ const externalUrl = process.env.SMOKE_TEST_URL;
 const baseUrl = externalUrl ?? `http://${host}:${port}`;
 const landingExpectedTexts = ["Entrar no ERP", "Solicitar diagnostico solar"];
 const dashboardExpectedTexts = [
-  "Dashboard Solar Care",
+  "Dashboard ERP Solar",
   "Demo Solar Care",
-  "Pipeline seedado",
+  "Pendencias documentais",
 ];
 const crmExpectedTexts = [
   "CRM Workspace",

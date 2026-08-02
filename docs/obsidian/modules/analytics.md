@@ -2,26 +2,28 @@
 
 ## Codigo
 
-- Dashboard placeholder: [../../../src/modules/analytics/components/dashboard-placeholder.tsx](../../../src/modules/analytics/components/dashboard-placeholder.tsx)
+- Dashboard ERP: [../../../src/modules/analytics/components/dashboard-placeholder.tsx](../../../src/modules/analytics/components/dashboard-placeholder.tsx)
+- Snapshot de analytics: [../../../src/modules/analytics/repositories/analytics-repository.ts](../../../src/modules/analytics/repositories/analytics-repository.ts)
 - Rota protegida: [../../../src/app/app/page.tsx](../../../src/app/app/page.tsx)
 
 ## Responsabilidade
 
-Mostrar a primeira area interna do ERP/CRM apos o login demo.
+Mostrar o dashboard ERP/CRM apos o login demo.
 
-No bloco 05-08, o dashboard ainda e uma primeira area operacional, mas ja consome os seeds CRM e aponta para modulos operacionais:
+No Commit 09, o dashboard agrega seeds CRM e Solar:
 
-- KPIs de receita prevista, pipeline aberto, leads e atividades abertas;
-- fila operacional de clientes solares;
-- pipeline seedado de oportunidades;
-- indicacao de que login demo, guard de rota e area ERP estao ativos.
-- navegacao para CRM, Solar, documentos e ferramentas.
+- receita prevista ponderada;
+- taxa de conversao entre oportunidades e projetos solares;
+- projetos ativos, capacidade e progresso medio;
+- pendencias documentais;
+- economia mensal estimada;
+- fila operacional e radar comercial.
 
 ## Fronteiras
 
-O dashboard pode receber sessao do modulo `auth`, componentes de `shared` e snapshots read-only do modulo `crm`. Dados reais de Solar e Operacoes entram nos proximos commits, evitando acoplamento prematuro.
+O dashboard pode receber sessao do modulo `auth`, componentes de `shared` e snapshots read-only dos modulos `crm` e `solar`.
 
 ## Proximos incrementos
 
 - Substituir dados in-memory por repositorio SQLite quando persistencia entrar.
-- No Commit 09, evoluir para dashboard ERP completo com KPIs e graficos leves.
+- Adicionar graficos leves somente se o dashboard precisar de comparacao temporal real.
