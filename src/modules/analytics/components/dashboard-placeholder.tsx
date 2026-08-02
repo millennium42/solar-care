@@ -22,11 +22,12 @@ import {
 } from "@/modules/shared/ui/card";
 
 const modules = [
-  "CRM",
-  "Projetos solares",
-  "Operacoes",
-  "Documentos",
-  "Ferramentas",
+  ["Dashboard", "/app"],
+  ["CRM", "/app/crm"],
+  ["Projetos solares", "/app"],
+  ["Operacoes", "/app"],
+  ["Documentos", "/app"],
+  ["Ferramentas", "/app"],
 ];
 
 const verticalStatus = [
@@ -116,10 +117,10 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
             Modulos
           </p>
           <div className="grid gap-1">
-            {modules.map((moduleName) => (
+            {modules.map(([moduleName, href]) => (
               <a
                 className="rounded-md px-2 py-2 text-sm font-medium hover:bg-[color:var(--field-soft)]"
-                href="/app"
+                href={href}
                 key={moduleName}
               >
                 {moduleName}

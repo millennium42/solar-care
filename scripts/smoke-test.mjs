@@ -10,6 +10,11 @@ const dashboardExpectedTexts = [
   "Demo Solar Care",
   "Pipeline seedado",
 ];
+const crmExpectedTexts = [
+  "CRM Workspace",
+  "Funil comercial",
+  "Condominio Aurora",
+];
 
 function delay(ms) {
   return new Promise((resolve) => {
@@ -139,6 +144,14 @@ async function main() {
     );
     const dashboardHtml = await dashboardResponse.text();
     assertHtmlIncludes(dashboardHtml, dashboardExpectedTexts);
+
+    const crmResponse = await waitForHttp(new URL("/app/crm", baseUrl), 30000, {
+      headers: {
+        cookie: cookieHeader,
+      },
+    });
+    const crmHtml = await crmResponse.text();
+    assertHtmlIncludes(crmHtml, crmExpectedTexts);
 
     const logoutResponse = await fetch(new URL("/demo-logout", baseUrl), {
       cache: "no-store",

@@ -18,7 +18,7 @@ O fluxo atual:
 1. O visitante clica em `Entrar no ERP`.
 2. `/demo-login` cria o cookie HTTP-only `solar-care-demo-session`.
 3. A rota redireciona para `/app`.
-4. `requireDemoSession` protege o segmento `/app` pelo layout e redireciona para `/` quando nao ha sessao valida.
+4. `requireDemoSession` protege o segmento `/app`, incluindo `/app/crm`, pelo layout e redireciona para `/` quando nao ha sessao valida.
 5. `/demo-logout` remove o cookie e volta para a landing.
 
 ## Decisoes

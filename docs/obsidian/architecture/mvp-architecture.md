@@ -85,4 +85,5 @@ Criar manifests Kubernetes somente depois do MVP publicado, revisado e demonstra
 - `/demo-login`: cria sessao demo e redireciona para `/app`.
 - `/demo-logout`: remove sessao demo e redireciona para `/`.
 - `/app`: area ERP/CRM protegida por `requireDemoSession`.
+- `/app/crm`: workspace CRM protegido com contas, contatos, oportunidades e timeline.
 - `/api/health`: healthcheck do Web Service.

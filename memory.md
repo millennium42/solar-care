@@ -44,12 +44,13 @@
 - Dashboard placeholder criado em `/app` para validar a primeira area interna ERP/CRM.
 - Revisao 01 encontrou P0=0/P1=0; P2 de layout protegido e smoke de auth foram corrigidos antes do Commit 05.
 - Camada CRM in-memory criada com contas, contatos, oportunidades e atividades seedadas; dashboard consome `getCrmDashboardSnapshot`.
+- Workspace CRM criado em `/app/crm` com funil, contas, contatos e timeline usando seeds in-memory.
 
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
 2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
-3. Seguir o Prompt 06 para telas CRM inspiradas em Twenty.
+3. Seguir o Prompt 07 para dominio Solar e conectar oportunidades a projetos.
 4. Revisao 02 deve acontecer apos o Commit 08.
 
 ## Ultima validacao local
@@ -67,6 +68,7 @@ Executada em 2026-08-02 no workspace WSL:
 - Commit 04 login demo: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke cobre landing, redirect sem sessao, `/demo-login` e dashboard `/app` com cookie.
 - Revisao 01 hardening: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram apos adicionar layout protegido de `/app`, flags de cookie no smoke e logout no smoke.
 - Commit 05 CRM seeds: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida dashboard com `Pipeline seedado`.
+- Commit 06 CRM workspace: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida `/app/crm`.
 - Pre-deploy Render: `npm ci && npm run build` passou.
 - Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
 - Smoke Render em `https://solar-care-web.onrender.com`: passou.
