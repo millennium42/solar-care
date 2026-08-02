@@ -23,6 +23,11 @@ const solarExpectedTexts = [
   "Checklist de vistoria",
   "Documentos pendentes",
 ];
+const assistantExpectedTexts = [
+  "Assistente local",
+  "Busca local do MVP",
+  "Documento:",
+];
 
 function delay(ms) {
   return new Promise((resolve) => {
@@ -172,6 +177,18 @@ async function main() {
     );
     const solarHtml = await solarResponse.text();
     assertHtmlIncludes(solarHtml, solarExpectedTexts);
+
+    const assistantResponse = await waitForHttp(
+      new URL("/app/assistant?q=documento", baseUrl),
+      30000,
+      {
+        headers: {
+          cookie: cookieHeader,
+        },
+      },
+    );
+    const assistantHtml = await assistantResponse.text();
+    assertHtmlIncludes(assistantHtml, assistantExpectedTexts);
 
     const logoutResponse = await fetch(new URL("/demo-logout", baseUrl), {
       cache: "no-store",

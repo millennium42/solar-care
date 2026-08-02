@@ -29,6 +29,7 @@ A primeira tela publica e uma pagina institucional da empresa ficticia `Solar Ca
 5. Visualizar projetos solares conectados a oportunidades CRM.
 6. Acompanhar proposta, vistoria, equipamentos e status de instalacao.
 7. Usar calculadora solar, checklist de vistoria e documentos pendentes na demonstracao.
+8. Consultar assistente local sobre dados seedados, documentacao e fluxo da operacao.
 
 ## Ferramentas criativas para instaladoras
 

@@ -29,6 +29,7 @@ const modules = [
   ["Operacoes", "/app/solar"],
   ["Documentos", "/app/solar#documentos"],
   ["Ferramentas", "/app/solar#ferramentas"],
+  ["Assistente", "/app/assistant"],
 ];
 
 export function ErpDashboard({ user }: { user: DemoUser }) {

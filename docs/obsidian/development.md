@@ -31,7 +31,7 @@ npm run build
 npm run smoke
 ```
 
-O smoke local inicia `next start`, valida a landing, executa `/demo-login`, captura o cookie de sessao e valida `/app`, `/app/crm`, `/app/solar` e as ferramentas de instaladora.
+O smoke local inicia `next start`, valida a landing, executa `/demo-login`, captura o cookie de sessao e valida `/app`, `/app/crm`, `/app/solar`, as ferramentas de instaladora e `/app/assistant`.
 
 ## Dependencias
 
