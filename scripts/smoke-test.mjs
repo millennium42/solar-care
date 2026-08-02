@@ -52,6 +52,22 @@ function getCookieHeader(response) {
   return setCookie.split(";")[0];
 }
 
+function assertLoginCookieFlags(response) {
+  const setCookie = response.headers.get("set-cookie") ?? "";
+  const lowerSetCookie = setCookie.toLowerCase();
+  const expectedFlags = ["httponly", "samesite=lax"];
+
+  if (process.env.NODE_ENV !== "development") {
+    expectedFlags.push("secure");
+  }
+
+  for (const expectedFlag of expectedFlags) {
+    if (!lowerSetCookie.includes(expectedFlag)) {
+      throw new Error(`Demo login cookie is missing ${expectedFlag}`);
+    }
+  }
+}
+
 async function assertRedirects(path, expectedLocation) {
   const response = await fetch(new URL(path, baseUrl), {
     cache: "no-store",
@@ -105,6 +121,7 @@ async function main() {
       throw new Error(`Demo login returned HTTP ${loginResponse.status}`);
     }
 
+    assertLoginCookieFlags(loginResponse);
     const cookieHeader = getCookieHeader(loginResponse);
     const appLocation = loginResponse.headers.get("location") ?? "/app";
     const dashboardResponse = await waitForHttp(
@@ -118,6 +135,23 @@ async function main() {
     );
     const dashboardHtml = await dashboardResponse.text();
     assertHtmlIncludes(dashboardHtml, dashboardExpectedTexts);
+
+    const logoutResponse = await fetch(new URL("/demo-logout", baseUrl), {
+      cache: "no-store",
+      headers: {
+        cookie: cookieHeader,
+      },
+      redirect: "manual",
+    });
+
+    if (logoutResponse.status < 300 || logoutResponse.status > 399) {
+      throw new Error(`Demo logout returned HTTP ${logoutResponse.status}`);
+    }
+
+    const logoutCookie = logoutResponse.headers.get("set-cookie") ?? "";
+    if (!logoutCookie.toLowerCase().includes("max-age=0")) {
+      throw new Error("Demo logout did not expire the session cookie");
+    }
 
     console.log(`Smoke test passed: ${baseUrl}`);
   } finally {
