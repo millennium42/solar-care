@@ -94,7 +94,7 @@ export function LandingPage() {
             </p>
           </div>
           <Button asChild size="sm">
-            <a href="#team-area">
+            <a href="/demo-login">
               Entrar no ERP
               <ArrowRight aria-hidden="true" />
             </a>
@@ -123,7 +123,7 @@ export function LandingPage() {
               </a>
             </Button>
             <Button asChild size="lg" variant="secondary">
-              <a href="#team-area">Entrar no ERP</a>
+              <a href="/demo-login">Entrar no ERP</a>
             </Button>
           </div>
         </div>

@@ -22,6 +22,8 @@ Depois da reestruturacao, o modulo entrega uma landing institucional com:
 - icones `lucide-react` para sinalizar servicos, operacao e etapas sem asset pesado.
 - captura de lead local para demonstracao, sem backend externo, exibindo estimativa simples de economia mensal.
 
+No Commit 04, os CTAs `Entrar no ERP` apontam para `/demo-login`, que cria a sessao demo e redireciona para `/app`.
+
 Regra importante: a landing publica nao deve vender o software Solar Care ERP. Ela deve apresentar a empresa solar ficticia que usa o ERP.
 
 ## Fronteiras
@@ -30,5 +32,4 @@ O modulo `marketing` pode importar configuracoes de `shared`, mas nao deve depen
 
 ## Proximos incrementos
 
-- No Commit 04, conectar o CTA ao fluxo real de login demo.
 - Quando existir camada de dados, enviar leads demo ao modulo CRM seedado.

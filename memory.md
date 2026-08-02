@@ -30,6 +30,7 @@
 - Ferramentas que exigem autenticacao ficam fora ate o usuario fornecer credenciais.
 - CRM deve ser fortemente inspirado nos fluxos de Twenty, mas sem copiar codigo, marca ou assets.
 - Seeds automaticos e login demo facil sao requisitos de demonstracao.
+- O login demo usa cookie proprio de 8 horas, sem provider externo, banco ou senha.
 - A landing publica deve vender os servicos solares da empresa ficticia que usa o ERP; o ERP aparece apenas como area interna/login demo.
 - `render.yaml` e a documentacao devem permanecer alinhados; o workspace `Demos` e selecionado no Render na criacao/sync do Blueprint, nao dentro do YAML.
 - `next@16.2.12` fixa transitivamente `postcss@8.4.31` e `sharp@0.34.5`; usar `overrides` npm para `postcss@8.5.25` e `sharp@0.35.3`, mantendo `npm audit --omit=dev` limpo.
@@ -37,13 +38,15 @@
 - Design system base criado em `src/modules/shared` com contrato shadcn/ui, `Button`, `Card`, `cn` e tokens sobrios em `globals.css`.
 - A landing institucional agora consome `Button`, `Card` e icones `lucide-react`, mantendo o ERP apenas como area interna/demo.
 - Landing institucional enriquecida com servicos, sinais de entrega tecnica e captura de lead local sem backend externo.
+- Login demo criado em `/demo-login` com cookie HTTP-only e guard `requireDemoSession` protegendo `/app`.
+- Dashboard placeholder criado em `/app` para validar a primeira area interna ERP/CRM.
 
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
 2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
-3. Seguir o Prompt 04 para criar login demo e dashboard placeholder.
-4. Fazer revisao rigorosa no primeiro checkpoint apos o Commit 04.
+3. Executar Revisao 01 com `$solar-code-review` apos o Commit 04.
+4. Corrigir qualquer P0/P1 antes de seguir para o Commit 05.
 
 ## Ultima validacao local
 
@@ -57,6 +60,7 @@ Executada em 2026-08-02 no workspace WSL:
 - Revalidacao apos reestruturar a landing: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram.
 - Commit 02 design system: `npm run lint`, `npm run typecheck`, `npm audit --omit=dev`, `npm run build` e `npm run smoke` passaram no workspace WSL.
 - Commit 03 landing demo: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke agora valida CTA do ERP e captura de diagnostico solar.
+- Commit 04 login demo: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke cobre landing, redirect sem sessao, `/demo-login` e dashboard `/app` com cookie.
 - Pre-deploy Render: `npm ci && npm run build` passou.
 - Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
 - Smoke Render em `https://solar-care-web.onrender.com`: passou.

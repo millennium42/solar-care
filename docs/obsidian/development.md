@@ -31,6 +31,8 @@ npm run build
 npm run smoke
 ```
 
+O smoke local inicia `next start`, valida a landing, executa `/demo-login`, captura o cookie de sessao e valida o dashboard protegido em `/app`.
+
 ## Dependencias
 
 O bootstrap usa apenas dependencias publicas necessarias para o proximo incremento:
@@ -38,6 +40,11 @@ O bootstrap usa apenas dependencias publicas necessarias para o proximo incremen
 - `next`
 - `react`
 - `react-dom`
+- `lucide-react`
+- `class-variance-authority`
+- `clsx`
+- `tailwind-merge`
+- `@radix-ui/react-slot`
 - `tailwindcss`
 - `@tailwindcss/postcss`
 - `typescript`

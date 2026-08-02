@@ -78,3 +78,11 @@ Documentar:
 - contratos de dados.
 
 Criar manifests Kubernetes somente depois do MVP publicado, revisado e demonstravel.
+
+## Rotas atuais
+
+- `/`: landing institucional da Solar Care Energia.
+- `/demo-login`: cria sessao demo e redireciona para `/app`.
+- `/demo-logout`: remove sessao demo e redireciona para `/`.
+- `/app`: area ERP/CRM protegida por `requireDemoSession`.
+- `/api/health`: healthcheck do Web Service.
