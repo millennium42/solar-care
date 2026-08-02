@@ -19,6 +19,9 @@ const solarExpectedTexts = [
   "Operacoes solares",
   "Agro Sol Noroeste",
   "48,2",
+  "Calculadora solar",
+  "Checklist de vistoria",
+  "Documentos pendentes",
 ];
 
 function delay(ms) {

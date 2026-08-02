@@ -46,13 +46,14 @@
 - Camada CRM in-memory criada com contas, contatos, oportunidades e atividades seedadas; dashboard consome `getCrmDashboardSnapshot`.
 - Workspace CRM criado em `/app/crm` com funil, contas, contatos e timeline usando seeds in-memory.
 - Modulo Solar criado com projetos, propostas, vistorias, equipamentos e marcos de instalacao conectados a oportunidades CRM.
+- Ferramentas de instaladora adicionadas em `/app/solar`: calculadora solar, checklist de vistoria e documentos pendentes.
 
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
 2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
-3. Seguir o Prompt 08 para calculadora solar, checklist de vistoria e documentos pendentes.
-4. Revisao 02 deve acontecer apos o Commit 08.
+3. Executar Revisao 02 com `$solar-code-review`.
+4. Corrigir qualquer P0/P1 antes de seguir para o Commit 09.
 
 ## Ultima validacao local
 
@@ -71,6 +72,7 @@ Executada em 2026-08-02 no workspace WSL:
 - Commit 05 CRM seeds: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida dashboard com `Pipeline seedado`.
 - Commit 06 CRM workspace: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida `/app/crm`.
 - Commit 07 Solar operations: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida `/app/solar`.
+- Commit 08 installer tools: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida calculadora, checklist e documentos em `/app/solar`.
 - Pre-deploy Render: `npm ci && npm run build` passou.
 - Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
 - Smoke Render em `https://solar-care-web.onrender.com`: passou.

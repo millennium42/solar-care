@@ -28,7 +28,7 @@ A primeira tela publica e uma pagina institucional da empresa ficticia `Solar Ca
 4. Gerenciar contas, contatos, oportunidades e atividades seedadas em workspace CRM inspirado no Twenty.
 5. Visualizar projetos solares conectados a oportunidades CRM.
 6. Acompanhar proposta, vistoria, equipamentos e status de instalacao.
-7. Evoluir ferramentas de calculo, checklist e documentos pendentes.
+7. Usar calculadora solar, checklist de vistoria e documentos pendentes na demonstracao.
 
 ## Ferramentas criativas para instaladoras
 

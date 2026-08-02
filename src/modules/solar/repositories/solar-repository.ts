@@ -1,16 +1,20 @@
 import {
+  documentChecklistItems,
   equipment,
   installationMilestones,
   proposals,
   siteSurveys,
   solarProjects,
+  surveyChecklistItems,
 } from "@/modules/solar/data/seed";
 import type {
+  DocumentChecklistItem,
   Equipment,
   InstallationMilestone,
   Proposal,
   SiteSurvey,
   SolarProject,
+  SurveyChecklistItem,
 } from "@/modules/solar/types";
 
 const currencyFormatter = new Intl.NumberFormat("pt-BR", {
@@ -43,6 +47,14 @@ export function listInstallationMilestones(): InstallationMilestone[] {
   return [...installationMilestones];
 }
 
+export function listSurveyChecklistItems(): SurveyChecklistItem[] {
+  return [...surveyChecklistItems];
+}
+
+export function listDocumentChecklistItems(): DocumentChecklistItem[] {
+  return [...documentChecklistItems];
+}
+
 export function getSolarOperationsSnapshot() {
   const activeProjects = solarProjects.filter(
     (project) => project.status !== "pos-venda",
@@ -57,6 +69,9 @@ export function getSolarOperationsSnapshot() {
   const blockedMilestones = installationMilestones.filter(
     (milestone) => milestone.status === "bloqueado",
   ).length;
+  const pendingDocuments = documentChecklistItems.filter(
+    (item) => item.status === "pendente",
+  ).length;
 
   return {
     activeProjectsCount: activeProjects.length,
@@ -67,6 +82,7 @@ export function getSolarOperationsSnapshot() {
     ),
     blockedMilestones,
     monthlySavings: formatCurrency(monthlySavings),
+    pendingDocuments,
     totalCapacityKw: activeProjects.reduce(
       (sum, project) => sum + project.capacityKw,
       0,

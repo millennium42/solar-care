@@ -1,9 +1,11 @@
 import type {
+  DocumentChecklistItem,
   Equipment,
   InstallationMilestone,
   Proposal,
   SiteSurvey,
   SolarProject,
+  SurveyChecklistItem,
 } from "@/modules/solar/types";
 
 export const solarProjects: SolarProject[] = [
@@ -176,10 +178,78 @@ export const installationMilestones: InstallationMilestone[] = [
   },
 ];
 
+export const surveyChecklistItems: SurveyChecklistItem[] = [
+  {
+    checked: true,
+    group: "Entrada",
+    id: "sc-conta-luz",
+    required: true,
+    title: "Conta de luz dos ultimos 12 meses",
+  },
+  {
+    checked: true,
+    group: "Telhado",
+    id: "sc-fotos-telhado",
+    required: true,
+    title: "Fotos do telhado e pontos de sombreamento",
+  },
+  {
+    checked: false,
+    group: "Eletrica",
+    id: "sc-quadro",
+    required: true,
+    title: "Foto do quadro geral e disjuntores",
+  },
+  {
+    checked: false,
+    group: "Acesso",
+    id: "sc-acesso",
+    required: false,
+    title: "Restricoes de acesso para equipe e equipamentos",
+  },
+];
+
+export const documentChecklistItems: DocumentChecklistItem[] = [
+  {
+    dueLabel: "Hoje",
+    id: "doc-aurora-art",
+    owner: "Engenharia",
+    projectId: "sp-aurora",
+    status: "pendente",
+    title: "ART do projeto",
+  },
+  {
+    dueLabel: "Amanha",
+    id: "doc-padaria-titularidade",
+    owner: "Cliente",
+    projectId: "sp-padaria",
+    status: "pendente",
+    title: "Comprovante de titularidade",
+  },
+  {
+    dueLabel: "2 dias",
+    id: "doc-agro-homologacao",
+    owner: "Operacoes",
+    projectId: "sp-agro",
+    status: "enviado",
+    title: "Protocolo de homologacao",
+  },
+  {
+    dueLabel: "Concluido",
+    id: "doc-agro-contrato",
+    owner: "Comercial",
+    projectId: "sp-agro",
+    status: "aprovado",
+    title: "Contrato assinado",
+  },
+];
+
 export const solarSeeds = {
+  documentChecklistItems,
   equipment,
   installationMilestones,
   proposals,
   siteSurveys,
   solarProjects,
+  surveyChecklistItems,
 };

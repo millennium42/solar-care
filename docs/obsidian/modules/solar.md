@@ -6,6 +6,7 @@
 - Seeds automaticos: [../../../src/modules/solar/data/seed.ts](../../../src/modules/solar/data/seed.ts)
 - Repositorio read-only: [../../../src/modules/solar/repositories/solar-repository.ts](../../../src/modules/solar/repositories/solar-repository.ts)
 - Workspace Solar: [../../../src/modules/solar/components/solar-operations-workspace.tsx](../../../src/modules/solar/components/solar-operations-workspace.tsx)
+- Ferramentas de instaladora: [../../../src/modules/solar/components/installer-productivity-tools.tsx](../../../src/modules/solar/components/installer-productivity-tools.tsx)
 - Rota protegida: [../../../src/app/app/solar/page.tsx](../../../src/app/app/solar/page.tsx)
 - Barrel do modulo: [../../../src/modules/solar/index.ts](../../../src/modules/solar/index.ts)
 
@@ -18,6 +19,8 @@ Modelar e demonstrar a operacao tecnica da instaladora solar:
 - propostas;
 - equipamentos;
 - marcos de instalacao.
+- checklist de vistoria;
+- documentos pendentes.
 
 ## Conexao CRM
 
@@ -32,6 +35,9 @@ A rota `/app/solar` entrega:
 - bloco de vistorias e propostas;
 - marcos de instalacao por responsavel;
 - lista tecnica de equipamentos.
+- calculadora solar simples;
+- checklist de vistoria interativo;
+- documentos pendentes com estado vazio para bloqueios criticos.
 
 ## Fronteiras
 
@@ -39,5 +45,5 @@ A rota `/app/solar` entrega:
 
 ## Proximos incrementos
 
-- Commit 08: adicionar calculadora solar, checklist de vistoria e documentos pendentes usando estes projetos.
-- Persistencia SQLite futura deve preservar os contratos de `SolarProject`, `SiteSurvey`, `Proposal`, `Equipment` e `InstallationMilestone`.
+- Revisao 02 deve validar acoplamento CRM/Solar, utilidade das ferramentas e responsividade.
+- Persistencia SQLite futura deve preservar os contratos de `SolarProject`, `SiteSurvey`, `Proposal`, `Equipment`, `InstallationMilestone`, `SurveyChecklistItem` e `DocumentChecklistItem`.

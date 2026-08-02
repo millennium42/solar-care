@@ -9,13 +9,16 @@ import {
 import type { DemoUser } from "@/modules/auth";
 import { listAccounts, listOpportunities } from "@/modules/crm";
 import { Button } from "@/modules/shared/ui/button";
+import { InstallerProductivityTools } from "@/modules/solar/components/installer-productivity-tools";
 import {
   getSolarOperationsSnapshot,
+  listDocumentChecklistItems,
   listEquipment,
   listInstallationMilestones,
   listProposals,
   listSiteSurveys,
   listSolarProjects,
+  listSurveyChecklistItems,
 } from "@/modules/solar";
 import type {
   InstallationMilestoneStatus,
@@ -56,6 +59,8 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
   const proposals = listProposals();
   const equipment = listEquipment();
   const milestones = listInstallationMilestones();
+  const surveyChecklistItems = listSurveyChecklistItems();
+  const documentChecklistItems = listDocumentChecklistItems();
   const snapshot = getSolarOperationsSnapshot();
   const accountsById = new Map(accounts.map((account) => [account.id, account]));
   const opportunitiesById = new Map(
@@ -374,6 +379,12 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
               })}
             </div>
           </section>
+
+          <InstallerProductivityTools
+            checklistItems={surveyChecklistItems}
+            documentItems={documentChecklistItems}
+            projects={projects}
+          />
         </div>
       </section>
     </main>

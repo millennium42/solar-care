@@ -22,6 +22,8 @@ export type EquipmentCategory =
   | "estrutura"
   | "protecao";
 
+export type DocumentChecklistStatus = "pendente" | "enviado" | "aprovado";
+
 export type SolarProject = {
   accountId: string;
   capacityKw: number;
@@ -70,5 +72,22 @@ export type InstallationMilestone = {
   owner: string;
   projectId: string;
   status: InstallationMilestoneStatus;
+  title: string;
+};
+
+export type SurveyChecklistItem = {
+  checked: boolean;
+  group: string;
+  id: string;
+  required: boolean;
+  title: string;
+};
+
+export type DocumentChecklistItem = {
+  dueLabel: string;
+  id: string;
+  owner: string;
+  projectId: string;
+  status: DocumentChecklistStatus;
   title: string;
 };
