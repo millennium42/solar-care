@@ -36,12 +36,13 @@
 - `next build` padrao do Next 16 usa Turbopack e falhou no bootstrap com panic interno ao processar `globals.css`; o MVP usa `next build --webpack` ate Turbopack ficar estavel neste ambiente.
 - Design system base criado em `src/modules/shared` com contrato shadcn/ui, `Button`, `Card`, `cn` e tokens sobrios em `globals.css`.
 - A landing institucional agora consome `Button`, `Card` e icones `lucide-react`, mantendo o ERP apenas como area interna/demo.
+- Landing institucional enriquecida com servicos, sinais de entrega tecnica e captura de lead local sem backend externo.
 
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
 2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
-3. Seguir o Prompt 03 para enriquecer a landing institucional com captura de lead demo.
+3. Seguir o Prompt 04 para criar login demo e dashboard placeholder.
 4. Fazer revisao rigorosa no primeiro checkpoint apos o Commit 04.
 
 ## Ultima validacao local
@@ -55,6 +56,7 @@ Executada em 2026-08-02 no workspace WSL:
 - `npm run smoke`: passou em `http://127.0.0.1:3100`.
 - Revalidacao apos reestruturar a landing: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram.
 - Commit 02 design system: `npm run lint`, `npm run typecheck`, `npm audit --omit=dev`, `npm run build` e `npm run smoke` passaram no workspace WSL.
+- Commit 03 landing demo: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke agora valida CTA do ERP e captura de diagnostico solar.
 - Pre-deploy Render: `npm ci && npm run build` passou.
 - Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
 - Smoke Render em `https://solar-care-web.onrender.com`: passou.

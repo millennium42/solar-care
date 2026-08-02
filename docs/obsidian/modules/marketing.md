@@ -4,6 +4,7 @@
 
 - Entrada publica: [../../../src/app/page.tsx](../../../src/app/page.tsx)
 - Componente principal: [../../../src/modules/marketing/components/landing-page.tsx](../../../src/modules/marketing/components/landing-page.tsx)
+- Captura de lead: [../../../src/modules/marketing/components/lead-capture-form.tsx](../../../src/modules/marketing/components/lead-capture-form.tsx)
 - Barrel do modulo: [../../../src/modules/marketing/index.ts](../../../src/modules/marketing/index.ts)
 
 ## Responsabilidade
@@ -19,6 +20,7 @@ Depois da reestruturacao, o modulo entrega uma landing institucional com:
 - processo comercial/tecnico em quatro etapas.
 - componentes base `Button` e `Card` do modulo `shared`;
 - icones `lucide-react` para sinalizar servicos, operacao e etapas sem asset pesado.
+- captura de lead local para demonstracao, sem backend externo, exibindo estimativa simples de economia mensal.
 
 Regra importante: a landing publica nao deve vender o software Solar Care ERP. Ela deve apresentar a empresa solar ficticia que usa o ERP.
 
@@ -28,5 +30,5 @@ O modulo `marketing` pode importar configuracoes de `shared`, mas nao deve depen
 
 ## Proximos incrementos
 
-- No Commit 03, enriquecer a landing institucional com captura de lead demo sem backend externo.
 - No Commit 04, conectar o CTA ao fluxo real de login demo.
+- Quando existir camada de dados, enviar leads demo ao modulo CRM seedado.

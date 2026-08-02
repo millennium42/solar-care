@@ -22,7 +22,7 @@ A primeira tela publica e uma pagina institucional da empresa ficticia `Solar Ca
 
 ## Fluxos do MVP
 
-1. Capturar lead pela landing institucional da instaladora solar.
+1. Capturar lead pela landing institucional da instaladora solar com formulario demo local.
 2. Entrar no ERP com usuario demo.
 3. Visualizar dashboard com receita prevista, projetos ativos, pendencias e economia estimada.
 4. Gerenciar contas, contatos e oportunidades em funil inspirado no Twenty.

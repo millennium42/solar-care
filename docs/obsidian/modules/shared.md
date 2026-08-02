@@ -19,6 +19,7 @@ No Commit 02, o modulo contem:
 - `cn` para combinar classes Tailwind com seguranca;
 - `Button` com variantes operacionais e suporte a `asChild`;
 - `Card` e partes de card para listas, ferramentas e registros;
+- `Input` e `Textarea` para formularios simples;
 - tokens visuais em `globals.css` para base SaaS operacional.
 
 Ver tambem [[../design-system|Design system base]].

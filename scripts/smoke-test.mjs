@@ -4,7 +4,7 @@ const host = "127.0.0.1";
 const port = process.env.SMOKE_PORT ?? "3100";
 const externalUrl = process.env.SMOKE_TEST_URL;
 const baseUrl = externalUrl ?? `http://${host}:${port}`;
-const expectedText = "Entrar no ERP";
+const expectedTexts = ["Entrar no ERP", "Solicitar diagnostico solar"];
 
 function delay(ms) {
   return new Promise((resolve) => {
@@ -57,8 +57,10 @@ async function main() {
     const response = await waitForHttp(baseUrl);
     const html = await response.text();
 
-    if (!html.includes(expectedText)) {
-      throw new Error(`Missing expected CTA text: ${expectedText}`);
+    for (const expectedText of expectedTexts) {
+      if (!html.includes(expectedText)) {
+        throw new Error(`Missing expected text: ${expectedText}`);
+      }
     }
 
     console.log(`Smoke test passed: ${baseUrl}`);

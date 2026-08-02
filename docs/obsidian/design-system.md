@@ -23,6 +23,7 @@ Componentes reutilizaveis ficam em [../../src/modules/shared/ui](../../src/modul
 - `Button`: variantes `default`, `primary`, `secondary`, `ghost` e `warning`; suporta `asChild` para links sem duplicar estilos.
 - `Card`: recipiente simples para itens repetidos, ferramentas, registros ou estados resumidos.
 - `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`: partes pequenas para manter espacamento consistente.
+- `Input` e `Textarea`: campos nativos estilizados para formularios sem dependencia externa.
 
 O utilitario [../../src/modules/shared/lib/utils.ts](../../src/modules/shared/lib/utils.ts) expoe `cn`, combinando `clsx` e `tailwind-merge`.
 

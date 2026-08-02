@@ -2,6 +2,7 @@ import {
   ArrowRight,
   BadgeCheck,
   Building2,
+  ClipboardCheck,
   Home,
   LineChart,
   MapPin,
@@ -11,6 +12,7 @@ import {
   Wrench,
 } from "lucide-react";
 
+import { LeadCaptureForm } from "@/modules/marketing/components/lead-capture-form";
 import { siteConfig } from "@/modules/shared/config/site";
 import { Button } from "@/modules/shared/ui/button";
 import {
@@ -44,6 +46,24 @@ const services = [
     description:
       "Monitoramento, manutencao preventiva e acompanhamento documental depois da entrega.",
     Icon: ShieldCheck,
+  },
+];
+
+const serviceSignals = [
+  {
+    title: "Homologacao completa",
+    description:
+      "Documentacao e concessionaria acompanhadas pela equipe tecnica.",
+  },
+  {
+    title: "Instalacao propria",
+    description:
+      "Equipe local com agenda, seguranca e checklist de entrega controlados.",
+  },
+  {
+    title: "Pos-venda ativo",
+    description:
+      "Monitoramento de producao, manutencao preventiva e garantia organizada.",
   },
 ];
 
@@ -97,8 +117,8 @@ export function LandingPage() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" variant="primary">
-              <a href="#services">
-                Conhecer servicos
+              <a href="#lead">
+                Solicitar diagnostico
                 <ArrowRight aria-hidden="true" />
               </a>
             </Button>
@@ -180,18 +200,58 @@ export function LandingPage() {
         className="border-t border-[color:var(--line)] bg-white px-5 py-10"
         id="services"
       >
-        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
-          {services.map(({ Icon, ...service }) => (
-            <Card key={service.title}>
-              <CardHeader>
-                <span className="mb-2 flex size-10 items-center justify-center rounded-lg bg-[color:var(--field-soft)] text-[color:var(--field)]">
-                  <Icon aria-hidden="true" className="size-5" />
-                </span>
-                <CardTitle>{service.title}</CardTitle>
-                <CardDescription>{service.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-normal text-[color:var(--sky)]">
+              Servicos solares
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight">
+              Projeto, instalacao e cuidado pos-entrega no mesmo fluxo.
+            </h2>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {services.map(({ Icon, ...service }) => (
+              <Card key={service.title}>
+                <CardHeader>
+                  <span className="mb-2 flex size-10 items-center justify-center rounded-lg bg-[color:var(--field-soft)] text-[color:var(--field)]">
+                    <Icon aria-hidden="true" className="size-5" />
+                  </span>
+                  <CardTitle>{service.title}</CardTitle>
+                  <CardDescription>{service.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[color:var(--line)] bg-[color:var(--surface-muted)] px-5 py-10">
+        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-normal text-[color:var(--sky)]">
+              Entrega tecnica
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight">
+              Cada proposta nasce com dados de campo e rotina de manutencao.
+            </h2>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {serviceSignals.map((signal) => (
+              <div
+                className="rounded-lg border border-[color:var(--line)] bg-white p-4"
+                key={signal.title}
+              >
+                <ClipboardCheck
+                  aria-hidden="true"
+                  className="mb-3 size-5 text-[color:var(--field)]"
+                />
+                <p className="text-sm font-semibold">{signal.title}</p>
+                <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
+                  {signal.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -218,6 +278,28 @@ export function LandingPage() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section
+        className="border-t border-[color:var(--line)] bg-white px-5 py-10"
+        id="lead"
+      >
+        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[0.85fr_1.15fr]">
+          <div className="flex flex-col justify-center">
+            <p className="text-sm font-semibold uppercase tracking-normal text-[color:var(--sky)]">
+              Diagnostico solar
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight">
+              Simule uma economia inicial e deixe a equipe retornar.
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-[color:var(--muted)]">
+              A Solar Care Energia usa a triagem inicial para estimar economia,
+              priorizar vistoria e preparar uma proposta com dados reais de
+              consumo.
+            </p>
+          </div>
+          <LeadCaptureForm />
         </div>
       </section>
     </main>
