@@ -2,11 +2,19 @@
 
 ## Estado
 
-O conector Render esta disponivel nesta sessao. Nenhum servico foi criado ainda.
+O conector Render foi usado para criar o Web Service inicial.
 
 Repositorio GitHub remoto publico: [millennium42/solar-care](https://github.com/millennium42/solar-care).
 
 O workspace Render alvo e `Demos`. O deploy deve ser criado/sincronizado como Blueprint usando o arquivo [../../render.yaml](../../render.yaml).
+
+URL publicada atual: [https://solar-care-web.onrender.com](https://solar-care-web.onrender.com).
+
+Service ID: `srv-d9nqk2vlk1mc738l13kg`.
+
+Deploy inicial: `dep-d9nqk3vlk1mc738l15d0`, status `live`.
+
+Observacao: o conector Render disponivel nesta sessao criou Web Service direto e nao expos criacao/sync de Blueprint nem Environment Group. O arquivo [../../render.yaml](../../render.yaml) permanece como contrato desejado para alinhar o servico quando essa capacidade estiver disponivel.
 
 ## Pre-requisitos
 
@@ -65,3 +73,13 @@ Possiveis variaveis futuras:
 6. Registrar URL em `memory.md`.
 
 O repo esta publico, entao o Render pode clonar `https://github.com/millennium42/solar-care` para criar/sincronizar o Blueprint no workspace `Demos`.
+
+## Smoke test Render
+
+Executado em 2026-08-02:
+
+- Deploy `dep-d9nqk3vlk1mc738l15d0`: `live`.
+- Home: `https://solar-care-web.onrender.com` retornou HTTP 200.
+- Conteudo verificado: `Solar Care Energia`, `Entrar no ERP`, `Conhecer servicos` e headline institucional.
+- Healthcheck: `https://solar-care-web.onrender.com/api/health` retornou HTTP 200.
+- Body do healthcheck: `{"ok":true,"service":"solar-care-web"}`.

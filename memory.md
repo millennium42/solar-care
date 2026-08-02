@@ -11,11 +11,14 @@
 - Dependencias npm instaladas no WSL para evitar gargalo de `node_modules` em `/mnt/c`.
 - [.env.example](.env.example) criado sem segredos reais para refletir as variaveis do Environment Group.
 - Landing reestruturada para pagina institucional da instaladora ficticia `Solar Care Energia`, nao para vender o software ERP.
-- Conector Render foi localizado e esta disponivel na sessao, mas nenhum servico foi criado porque o Blueprint ainda nao foi sincronizado no Render.
+- Conector Render foi usado para criar o Web Service `solar-care-web` no workspace `Demos`.
 - Repositorio GitHub publico: `https://github.com/millennium42/solar-care`.
 - Remote local `origin`: `https://github.com/millennium42/solar-care.git`.
 - Workspace Render alvo: `Demos`.
-- Deploy Render deve ser criado via Blueprint `render.yaml`, com Environment Group `solar-care-production` e Web Service `solar-care-web`.
+- Render service ID: `srv-d9nqk2vlk1mc738l13kg`.
+- Render deploy ID inicial: `dep-d9nqk3vlk1mc738l15d0`.
+- URL publicada Render: `https://solar-care-web.onrender.com`.
+- `render.yaml` continua como contrato desejado de Blueprint/Environment Group, mas o conector disponivel nesta sessao criou Web Service direto e nao expos criacao/sync de Blueprint nem Environment Group.
 - Skills canonicas versionadas em `.codex/skills` e sincronizadas para `${CODEX_HOME:-$HOME/.codex}/skills`.
 
 ## Decisoes
@@ -34,7 +37,7 @@
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
-2. Usar o repo publico `https://github.com/millennium42/solar-care` para o Blueprint no Render workspace `Demos`.
+2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
 3. Seguir o Prompt 02 para design system base.
 4. Fazer revisao rigorosa no primeiro checkpoint apos o Commit 04.
 
@@ -48,6 +51,10 @@ Executada em 2026-08-02 no workspace WSL:
 - `npm run build`: passou com `next build --webpack`.
 - `npm run smoke`: passou em `http://127.0.0.1:3100`.
 - Revalidacao apos reestruturar a landing: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram.
+- Pre-deploy Render: `npm ci && npm run build` passou.
+- Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
+- Smoke Render em `https://solar-care-web.onrender.com`: passou.
+- Healthcheck Render `https://solar-care-web.onrender.com/api/health`: HTTP 200 com `{"ok":true,"service":"solar-care-web"}`.
 
 ## Usuario demo sugerido
 
