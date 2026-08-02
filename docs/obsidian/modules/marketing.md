@@ -8,14 +8,17 @@
 
 ## Responsabilidade
 
-Renderizar a primeira tela publica da empresa ficticia `Solar Care Energia`.
+Renderizar a primeira tela publica institucional da empresa ficticia `Solar Care Energia`, que e uma instaladora de energia solar e usuaria do ERP/CRM.
 
-No Commit 01, o modulo entrega uma landing simples com:
+Depois da reestruturacao, o modulo entrega uma landing institucional com:
 
-- barra superior com CTA `Entrar no ERP`;
-- hero do MVP demonstravel;
-- preview estatico de painel ERP/CRM;
-- lista curta de modulos planejados.
+- barra superior com marca da instaladora e CTA `Entrar no ERP` para equipe interna;
+- hero de servicos solares para residencias, empresas e produtores rurais;
+- bloco de indicadores comerciais e operacionais da instaladora;
+- servicos reais de projeto, instalacao, homologacao, monitoramento e pos-venda;
+- processo comercial/tecnico em quatro etapas.
+
+Regra importante: a landing publica nao deve vender o software Solar Care ERP. Ela deve apresentar a empresa solar ficticia que usa o ERP.
 
 ## Fronteiras
 
@@ -23,5 +26,5 @@ O modulo `marketing` pode importar configuracoes de `shared`, mas nao deve depen
 
 ## Proximos incrementos
 
-- No Commit 03, trocar o preview inicial por uma landing mais completa da empresa ficticia.
+- No Commit 03, enriquecer a landing institucional com captura de lead demo sem backend externo.
 - No Commit 04, conectar o CTA ao fluxo real de login demo.

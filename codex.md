@@ -2,7 +2,7 @@
 
 ## Missao
 
-Construir o Solar Care, um CRM e ERP para empresas de energia solar, com uma landing page de empresa ficticia de energia solar e login simples para demonstracao do ERP/CRM.
+Construir o Solar Care, um CRM e ERP para empresas de energia solar, com uma landing page institucional de uma empresa ficticia de energia solar que usa o ERP internamente e login simples para demonstracao do ERP/CRM.
 
 ## Politica Ponytail
 
@@ -31,7 +31,7 @@ A politica Ponytail prevalece sobre todas as outras preferencias:
 
 O primeiro MVP deve demonstrar:
 
-1. Landing page da empresa ficticia "Solar Care Energia" com CTA de login.
+1. Landing page institucional da empresa ficticia "Solar Care Energia", uma instaladora solar que usa o ERP internamente, com CTA de login para equipe/demo.
 2. Login automatico de demo.
 3. Dashboard do ERP/CRM.
 4. CRM inspirado em Twenty: contas, contatos, oportunidades, atividades e funil.

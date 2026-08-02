@@ -10,7 +10,10 @@
 - App Next.js minimo criado com TypeScript, App Router, Tailwind CSS e estrutura `src/modules`.
 - Dependencias npm instaladas no WSL para evitar gargalo de `node_modules` em `/mnt/c`.
 - [.env.example](.env.example) criado sem segredos reais para refletir as variaveis do Environment Group.
-- Conector Render foi localizado e esta disponivel na sessao, mas nenhum servico foi criado porque ainda nao existe repositorio remoto Git.
+- Landing reestruturada para pagina institucional da instaladora ficticia `Solar Care Energia`, nao para vender o software ERP.
+- Conector Render foi localizado e esta disponivel na sessao, mas nenhum servico foi criado porque o Blueprint ainda nao foi sincronizado no Render.
+- Repositorio GitHub criado como privado: `https://github.com/millennium42/solar-care`.
+- Remote local `origin`: `https://github.com/millennium42/solar-care.git`.
 - Workspace Render alvo: `Demos`.
 - Deploy Render deve ser criado via Blueprint `render.yaml`, com Environment Group `solar-care-production` e Web Service `solar-care-web`.
 - Skills canonicas versionadas em `.codex/skills` e sincronizadas para `${CODEX_HOME:-$HOME/.codex}/skills`.
@@ -23,14 +26,15 @@
 - Ferramentas que exigem autenticacao ficam fora ate o usuario fornecer credenciais.
 - CRM deve ser fortemente inspirado nos fluxos de Twenty, mas sem copiar codigo, marca ou assets.
 - Seeds automaticos e login demo facil sao requisitos de demonstracao.
+- A landing publica deve vender os servicos solares da empresa ficticia que usa o ERP; o ERP aparece apenas como area interna/login demo.
 - `render.yaml` e a documentacao devem permanecer alinhados; o workspace `Demos` e selecionado no Render na criacao/sync do Blueprint, nao dentro do YAML.
 - `next@16.2.12` fixa transitivamente `postcss@8.4.31` e `sharp@0.34.5`; usar `overrides` npm para `postcss@8.5.25` e `sharp@0.35.3`, mantendo `npm audit --omit=dev` limpo.
 - `next build` padrao do Next 16 usa Turbopack e falhou no bootstrap com panic interno ao processar `globals.css`; o MVP usa `next build --webpack` ate Turbopack ficar estavel neste ambiente.
 
 ## Proximas acoes
 
-1. Commitar `chore(app): bootstrap next solar care`.
-2. Sincronizar o commit WSL de volta para o caminho Windows se necessario.
+1. Push da branch `main` para `origin`.
+2. Confirmar que o Render workspace `Demos` tem acesso ao repo privado ou tornar o repo publico antes do deploy.
 3. Seguir o Prompt 02 para design system base.
 4. Fazer revisao rigorosa no primeiro checkpoint apos o Commit 04.
 
@@ -43,6 +47,7 @@ Executada em 2026-08-02 no workspace WSL:
 - `npm audit --omit=dev`: passou, 0 vulnerabilidades.
 - `npm run build`: passou com `next build --webpack`.
 - `npm run smoke`: passou em `http://127.0.0.1:3100`.
+- Revalidacao apos reestruturar a landing: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram.
 
 ## Usuario demo sugerido
 

@@ -10,7 +10,7 @@ CRM e ERP para empresas de energia solar.
 
 ## Demonstracao esperada
 
-A primeira tela publica e uma landing page de uma empresa ficticia de energia solar. A barra superior tem botao de login para entrar no ERP/CRM. O login demo deve ser automatico e carregar dados seedados.
+A primeira tela publica e uma pagina institucional da empresa ficticia `Solar Care Energia`, uma instaladora de energia solar que usa o ERP/CRM internamente. A landing deve vender servicos solares da instaladora, nao o software. A barra superior tem botao de login para a equipe entrar no ERP/CRM. O login demo deve ser automatico e carregar dados seedados.
 
 ## Usuarios
 
@@ -22,7 +22,7 @@ A primeira tela publica e uma landing page de uma empresa ficticia de energia so
 
 ## Fluxos do MVP
 
-1. Capturar lead pela landing page.
+1. Capturar lead pela landing institucional da instaladora solar.
 2. Entrar no ERP com usuario demo.
 3. Visualizar dashboard com receita prevista, projetos ativos, pendencias e economia estimada.
 4. Gerenciar contas, contatos e oportunidades em funil inspirado no Twenty.

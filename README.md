@@ -7,6 +7,7 @@ Este repositorio comeca como um pacote de governanca e prompts para conduzir a e
 ## Estado atual
 
 - Git inicializado na branch `main`.
+- Repositorio GitHub remoto: [millennium42/solar-care](https://github.com/millennium42/solar-care).
 - Node LTS instalado via `nvm`; versao fixada em [.nvmrc](.nvmrc).
 - App Next.js minimo criado com TypeScript, App Router e Tailwind.
 - Caminho ativo de desenvolvimento WSL: `/home/millennium42/solar-care`.

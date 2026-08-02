@@ -2,13 +2,15 @@
 
 ## Estado
 
-O conector Render esta disponivel nesta sessao. Nenhum servico foi criado ainda porque o workspace nao possui repositorio remoto Git configurado.
+O conector Render esta disponivel nesta sessao. Nenhum servico foi criado ainda.
+
+Repositorio GitHub remoto criado como privado: [millennium42/solar-care](https://github.com/millennium42/solar-care).
 
 O workspace Render alvo e `Demos`. O deploy deve ser criado/sincronizado como Blueprint usando o arquivo [../../render.yaml](../../render.yaml).
 
 ## Pre-requisitos
 
-- Repositorio remoto Git acessivel pelo Render.
+- Repositorio remoto Git acessivel pelo Render: `https://github.com/millennium42/solar-care`.
 - Branch `main` enviada para o remoto.
 - App com scripts:
   - `npm run build`
@@ -61,3 +63,5 @@ Possiveis variaveis futuras:
 4. Aguardar deploy terminal.
 5. Rodar smoke test contra a URL publicada.
 6. Registrar URL em `memory.md`.
+
+Como o repo foi criado privado, confirmar acesso do Render ao GitHub `millennium42/solar-care` antes de tentar o deploy.
