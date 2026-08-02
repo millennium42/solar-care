@@ -3,17 +3,25 @@
 ## Codigo
 
 - Configuracao de site: [../../../src/modules/shared/config/site.ts](../../../src/modules/shared/config/site.ts)
+- Utilitarios: [../../../src/modules/shared/lib/utils.ts](../../../src/modules/shared/lib/utils.ts)
+- Componentes UI: [../../../src/modules/shared/ui](../../../src/modules/shared/ui)
 - Estilos globais: [../../../src/app/globals.css](../../../src/app/globals.css)
 
 ## Responsabilidade
 
 Concentrar configuracoes, utilitarios e componentes reutilizaveis que nao pertencem a um dominio especifico.
 
-No Commit 01, o modulo contem apenas `siteConfig` com:
+No Commit 02, o modulo contem:
 
 - nome da empresa ficticia;
 - nome do produto;
 - email do usuario demo sugerido.
+- `cn` para combinar classes Tailwind com seguranca;
+- `Button` com variantes operacionais e suporte a `asChild`;
+- `Card` e partes de card para listas, ferramentas e registros;
+- tokens visuais em `globals.css` para base SaaS operacional.
+
+Ver tambem [[../design-system|Design system base]].
 
 ## Fronteiras
 
@@ -21,5 +29,5 @@ No Commit 01, o modulo contem apenas `siteConfig` com:
 
 ## Proximos incrementos
 
-- No Commit 02, receber os primeiros componentes base do design system.
-- Manter tokens visuais e componentes reutilizaveis pequenos, sem criar uma biblioteca paralela antes de haver repeticao real.
+- Adicionar componentes shadcn/ui apenas quando uma tela concreta precisar deles.
+- No Commit 03, reaproveitar `Button` e `Card` na captura de lead demo.

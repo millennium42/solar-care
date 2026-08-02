@@ -1,9 +1,29 @@
+import {
+  ArrowRight,
+  BadgeCheck,
+  Building2,
+  Home,
+  LineChart,
+  MapPin,
+  PanelTop,
+  ShieldCheck,
+  SunMedium,
+  Wrench,
+} from "lucide-react";
+
 import { siteConfig } from "@/modules/shared/config/site";
+import { Button } from "@/modules/shared/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/modules/shared/ui/card";
 
 const metrics = [
-  { label: "Clientes atendidos", value: "420+" },
-  { label: "Economia projetada", value: "R$ 2,8 mi" },
-  { label: "Usinas monitoradas", value: "118" },
+  { label: "Clientes atendidos", value: "420+", Icon: Home },
+  { label: "Economia projetada", value: "R$ 2,8 mi", Icon: LineChart },
+  { label: "Usinas monitoradas", value: "118", Icon: SunMedium },
 ];
 
 const services = [
@@ -11,24 +31,33 @@ const services = [
     title: "Projetos residenciais",
     description:
       "Dimensionamento, proposta, homologacao e instalacao para casas e condominios.",
+    Icon: Home,
   },
   {
     title: "Energia para empresas",
     description:
       "Estudos de consumo, payback e implantacao para comercios, industrias e propriedades rurais.",
+    Icon: Building2,
   },
   {
     title: "Operacao e pos-venda",
     description:
       "Monitoramento, manutencao preventiva e acompanhamento documental depois da entrega.",
+    Icon: ShieldCheck,
   },
 ];
 
 const processSteps = [
-  "Analise da conta de luz",
-  "Vistoria tecnica",
-  "Projeto e homologacao",
-  "Instalacao e monitoramento",
+  { title: "Analise da conta de luz", Icon: LineChart },
+  { title: "Vistoria tecnica", Icon: MapPin },
+  { title: "Projeto e homologacao", Icon: BadgeCheck },
+  { title: "Instalacao e monitoramento", Icon: Wrench },
+];
+
+const operations = [
+  ["Condominio Aurora", "Vistoria", "18,4"],
+  ["Padaria Central", "Projeto", "9,8"],
+  ["Agro Sol Noroeste", "Instal.", "48,2"],
 ];
 
 export function LandingPage() {
@@ -36,20 +65,20 @@ export function LandingPage() {
     <main className="min-h-screen">
       <header className="border-b border-[color:var(--line)] bg-white/90">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-          <div>
+          <div className="min-w-0">
             <p className="text-sm font-semibold uppercase tracking-normal text-[color:var(--field)]">
               {siteConfig.companyName}
             </p>
-            <p className="text-xs text-[color:var(--muted)]">
+            <p className="truncate text-xs text-[color:var(--muted)]">
               Energia solar em {siteConfig.serviceRegion}
             </p>
           </div>
-          <a
-            className="inline-flex h-10 items-center justify-center rounded-lg bg-[color:var(--foreground)] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[color:var(--field)] focus:outline-none focus:ring-2 focus:ring-[color:var(--solar)] focus:ring-offset-2"
-            href="#team-area"
-          >
-            Entrar no ERP
-          </a>
+          <Button asChild size="sm">
+            <a href="#team-area">
+              Entrar no ERP
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </Button>
         </div>
       </header>
 
@@ -67,45 +96,51 @@ export function LandingPage() {
             atendimento local e operacao tecnica integrada.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              className="inline-flex h-11 items-center justify-center rounded-lg bg-[color:var(--field)] px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#176e4d] focus:outline-none focus:ring-2 focus:ring-[color:var(--solar)] focus:ring-offset-2"
-              href="#services"
-            >
-              Conhecer servicos
-            </a>
-            <a
-              className="inline-flex h-11 items-center justify-center rounded-lg border border-[color:var(--line)] bg-white px-5 text-sm font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--field)] focus:outline-none focus:ring-2 focus:ring-[color:var(--solar)] focus:ring-offset-2"
-              href="#team-area"
-            >
-              Entrar no ERP
-            </a>
+            <Button asChild size="lg" variant="primary">
+              <a href="#services">
+                Conhecer servicos
+                <ArrowRight aria-hidden="true" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="secondary">
+              <a href="#team-area">Entrar no ERP</a>
+            </Button>
           </div>
         </div>
 
         <div
           id="team-area"
-          className="rounded-lg border border-[color:var(--line)] bg-[color:var(--surface)] p-5 shadow-sm"
+          className="rounded-lg border border-[color:var(--line)] bg-[color:var(--surface)] p-4 shadow-sm sm:p-5"
         >
           <div className="mb-5 flex items-center justify-between border-b border-[color:var(--line)] pb-4">
-            <div>
-              <p className="text-sm font-semibold text-[color:var(--foreground)]">
-                Operacao interna
-              </p>
-              <p className="text-xs text-[color:var(--muted)]">
-                Equipe Solar Care Energia
-              </p>
+            <div className="flex min-w-0 items-center gap-3">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[color:var(--sky-soft)] text-[color:var(--sky)]">
+                <PanelTop aria-hidden="true" className="size-5" />
+              </span>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold text-[color:var(--foreground)]">
+                  Operacao interna
+                </p>
+                <p className="truncate text-xs text-[color:var(--muted)]">
+                  Equipe Solar Care Energia
+                </p>
+              </div>
             </div>
-            <span className="rounded-lg bg-[color:var(--solar)] px-3 py-1 text-xs font-semibold text-[#3b2b08]">
+            <span className="rounded-md bg-[color:var(--solar-soft)] px-3 py-1 text-xs font-semibold text-[#3b2b08]">
               ERP
             </span>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            {metrics.map((metric) => (
+            {metrics.map(({ Icon, ...metric }) => (
               <div
-                className="rounded-lg border border-[color:var(--line)] p-4"
+                className="min-h-28 rounded-lg border border-[color:var(--line)] p-4"
                 key={metric.label}
               >
+                <Icon
+                  aria-hidden="true"
+                  className="mb-3 size-5 text-[color:var(--field)]"
+                />
                 <p className="text-2xl font-bold text-[color:var(--foreground)]">
                   {metric.value}
                 </p>
@@ -122,11 +157,7 @@ export function LandingPage() {
               <span>Status</span>
               <span className="text-right">kWp</span>
             </div>
-            {[
-              ["Condominio Aurora", "Vistoria", "18,4"],
-              ["Padaria Central", "Projeto", "9,8"],
-              ["Agro Sol Noroeste", "Instal.", "48,2"],
-            ].map(([client, status, capacity]) => (
+            {operations.map(([client, status, capacity]) => (
               <div
                 className="grid grid-cols-[minmax(0,1fr)_72px_64px] gap-2 border-b border-[color:var(--line)] px-3 py-3 text-xs last:border-b-0 sm:grid-cols-[minmax(0,1fr)_96px_80px] sm:gap-3 sm:px-4 sm:text-sm"
                 key={client}
@@ -150,18 +181,16 @@ export function LandingPage() {
         id="services"
       >
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
-          {services.map((service) => (
-            <div
-              className="rounded-lg border border-[color:var(--line)] p-5"
-              key={service.title}
-            >
-              <p className="text-base font-semibold leading-6">
-                {service.title}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-[color:var(--muted)]">
-                {service.description}
-              </p>
-            </div>
+          {services.map(({ Icon, ...service }) => (
+            <Card key={service.title}>
+              <CardHeader>
+                <span className="mb-2 flex size-10 items-center justify-center rounded-lg bg-[color:var(--field-soft)] text-[color:var(--field)]">
+                  <Icon aria-hidden="true" className="size-5" />
+                </span>
+                <CardTitle>{service.title}</CardTitle>
+                <CardDescription>{service.description}</CardDescription>
+              </CardHeader>
+            </Card>
           ))}
         </div>
       </section>
@@ -172,16 +201,21 @@ export function LandingPage() {
             Como trabalhamos
           </p>
           <div className="mt-5 grid gap-3 md:grid-cols-4">
-            {processSteps.map((step, index) => (
-              <div
-                className="rounded-lg border border-[color:var(--line)] bg-white p-4"
-                key={step}
-              >
-                <span className="text-sm font-bold text-[color:var(--field)]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="mt-3 text-sm font-semibold leading-6">{step}</p>
-              </div>
+            {processSteps.map(({ Icon, title }, index) => (
+              <Card className="min-h-36" key={title}>
+                <CardHeader>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-sm font-bold text-[color:var(--field)]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <Icon
+                      aria-hidden="true"
+                      className="size-5 shrink-0 text-[color:var(--sky)]"
+                    />
+                  </div>
+                  <CardTitle className="mt-3 text-sm">{title}</CardTitle>
+                </CardHeader>
+              </Card>
             ))}
           </div>
         </div>

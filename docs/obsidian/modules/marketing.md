@@ -17,6 +17,8 @@ Depois da reestruturacao, o modulo entrega uma landing institucional com:
 - bloco de indicadores comerciais e operacionais da instaladora;
 - servicos reais de projeto, instalacao, homologacao, monitoramento e pos-venda;
 - processo comercial/tecnico em quatro etapas.
+- componentes base `Button` e `Card` do modulo `shared`;
+- icones `lucide-react` para sinalizar servicos, operacao e etapas sem asset pesado.
 
 Regra importante: a landing publica nao deve vender o software Solar Care ERP. Ela deve apresentar a empresa solar ficticia que usa o ERP.
 
