@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import type { DemoUser } from "@/modules/auth";
+import { getCrmDashboardSnapshot } from "@/modules/crm";
 import { Button } from "@/modules/shared/ui/button";
 import {
   Card,
@@ -19,39 +20,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/modules/shared/ui/card";
-
-const kpis = [
-  {
-    label: "Receita prevista",
-    value: "R$ 684 mil",
-    hint: "Pipeline comercial",
-    Icon: ChartNoAxesColumn,
-  },
-  {
-    label: "Projetos ativos",
-    value: "18",
-    hint: "Vistoria ate pos-venda",
-    Icon: SunMedium,
-  },
-  {
-    label: "Leads novos",
-    value: "27",
-    hint: "Triagem da landing",
-    Icon: UsersRound,
-  },
-  {
-    label: "Pendencias",
-    value: "9",
-    hint: "Documentos e instalacao",
-    Icon: ClipboardList,
-  },
-];
-
-const workQueue = [
-  ["Condominio Aurora", "Agendar vistoria", "Hoje"],
-  ["Padaria Central", "Enviar proposta revisada", "Amanha"],
-  ["Agro Sol Noroeste", "Confirmar equipe tecnica", "2 dias"],
-];
 
 const modules = [
   "CRM",
@@ -80,6 +48,34 @@ const verticalStatus = [
 ];
 
 export function DashboardPlaceholder({ user }: { user: DemoUser }) {
+  const crmSnapshot = getCrmDashboardSnapshot();
+  const kpis = [
+    {
+      label: "Receita prevista",
+      value: crmSnapshot.expectedRevenue,
+      hint: "Valor ponderado do pipeline",
+      Icon: ChartNoAxesColumn,
+    },
+    {
+      label: "Pipeline aberto",
+      value: crmSnapshot.pipelineValue,
+      hint: `${crmSnapshot.accountsCount} contas seedadas`,
+      Icon: SunMedium,
+    },
+    {
+      label: "Leads novos",
+      value: String(crmSnapshot.newLeadsCount),
+      hint: "Lead e qualificacao",
+      Icon: UsersRound,
+    },
+    {
+      label: "Atividades abertas",
+      value: String(crmSnapshot.openActivitiesCount),
+      hint: `${crmSnapshot.primaryContactsCount} contatos principais`,
+      Icon: ClipboardList,
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-[color:var(--background)]">
       <header className="border-b border-[color:var(--line)] bg-white">
@@ -158,7 +154,7 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
               <CardHeader>
                 <CardTitle>Fila operacional</CardTitle>
                 <CardDescription>
-                  Primeiras tarefas seedadas para a demonstracao.
+                  Primeiras tarefas dos seeds CRM.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -168,17 +164,19 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
                     <span>Acao</span>
                     <span className="text-right">Prazo</span>
                   </div>
-                  {workQueue.map(([client, action, deadline]) => (
+                  {crmSnapshot.workQueue.map((item) => (
                     <div
                       className="grid grid-cols-[minmax(0,1fr)_120px_80px] gap-3 border-b border-[color:var(--line)] px-3 py-3 text-sm last:border-b-0"
-                      key={client}
+                      key={item.id}
                     >
-                      <span className="truncate font-medium">{client}</span>
+                      <span className="truncate font-medium">
+                        {item.accountName}
+                      </span>
                       <span className="truncate text-[color:var(--muted)]">
-                        {action}
+                        {item.action}
                       </span>
                       <span className="text-right font-semibold">
-                        {deadline}
+                        {item.deadline}
                       </span>
                     </div>
                   ))}
@@ -188,33 +186,54 @@ export function DashboardPlaceholder({ user }: { user: DemoUser }) {
 
             <Card>
               <CardHeader>
-                <CardTitle>Estado da fatia vertical</CardTitle>
+                <CardTitle>Pipeline seedado</CardTitle>
                 <CardDescription>
-                  Login demo, guard de rota e dashboard base estao ativos.
+                  Oportunidades prontas para a tela CRM do proximo commit.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-3">
-                  {verticalStatus.map(({ Icon, description, title }) => (
+                  {crmSnapshot.pipelineStages.map((opportunity) => (
                     <div
-                      className="flex items-center gap-3 rounded-lg border border-[color:var(--line)] p-3"
-                      key={title}
+                      className="rounded-lg border border-[color:var(--line)] p-3"
+                      key={opportunity.id}
                     >
-                      <Icon
-                        aria-hidden="true"
-                        className="size-5 shrink-0 text-[color:var(--field)]"
-                      />
-                      <div>
-                        <p className="text-sm font-semibold">{title}</p>
-                        <p className="text-xs text-[color:var(--muted)]">
-                          {description}
-                        </p>
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-semibold">
+                            {opportunity.accountName}
+                          </p>
+                          <p className="truncate text-xs text-[color:var(--muted)]">
+                            {opportunity.title}
+                          </p>
+                        </div>
+                        <span className="shrink-0 rounded-md bg-[color:var(--field-soft)] px-2 py-1 text-xs font-semibold text-[color:var(--field)]">
+                          {opportunity.label}
+                        </span>
                       </div>
+                      <p className="mt-3 text-sm font-bold">
+                        {opportunity.value}
+                      </p>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
+          </section>
+
+          <section className="grid gap-4 md:grid-cols-3">
+            {verticalStatus.map(({ Icon, description, title }) => (
+              <Card key={title}>
+                <CardHeader>
+                  <Icon
+                    aria-hidden="true"
+                    className="size-5 text-[color:var(--field)]"
+                  />
+                  <CardTitle className="text-sm">{title}</CardTitle>
+                  <CardDescription>{description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
           </section>
         </div>
       </section>

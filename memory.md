@@ -32,6 +32,7 @@
 - Seeds automaticos e login demo facil sao requisitos de demonstracao.
 - O login demo usa cookie proprio de 8 horas, sem provider externo, banco ou senha.
 - O valor fixo do cookie demo e risco P2 aceito apenas enquanto `/demo-login` for publico e nao houver dados sensiveis/permissoes reais.
+- CRM usa repositorio read-only em memoria ate a persistencia SQLite ser introduzida; contratos de dominio ficam em `src/modules/crm`.
 - A landing publica deve vender os servicos solares da empresa ficticia que usa o ERP; o ERP aparece apenas como area interna/login demo.
 - `render.yaml` e a documentacao devem permanecer alinhados; o workspace `Demos` e selecionado no Render na criacao/sync do Blueprint, nao dentro do YAML.
 - `next@16.2.12` fixa transitivamente `postcss@8.4.31` e `sharp@0.34.5`; usar `overrides` npm para `postcss@8.5.25` e `sharp@0.35.3`, mantendo `npm audit --omit=dev` limpo.
@@ -42,12 +43,13 @@
 - Login demo criado em `/demo-login` com cookie HTTP-only e guard `requireDemoSession` protegendo `/app`.
 - Dashboard placeholder criado em `/app` para validar a primeira area interna ERP/CRM.
 - Revisao 01 encontrou P0=0/P1=0; P2 de layout protegido e smoke de auth foram corrigidos antes do Commit 05.
+- Camada CRM in-memory criada com contas, contatos, oportunidades e atividades seedadas; dashboard consome `getCrmDashboardSnapshot`.
 
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
 2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
-3. Seguir o Prompt 05 para dados e seeds CRM.
+3. Seguir o Prompt 06 para telas CRM inspiradas em Twenty.
 4. Revisao 02 deve acontecer apos o Commit 08.
 
 ## Ultima validacao local
@@ -64,6 +66,7 @@ Executada em 2026-08-02 no workspace WSL:
 - Commit 03 landing demo: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke agora valida CTA do ERP e captura de diagnostico solar.
 - Commit 04 login demo: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke cobre landing, redirect sem sessao, `/demo-login` e dashboard `/app` com cookie.
 - Revisao 01 hardening: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram apos adicionar layout protegido de `/app`, flags de cookie no smoke e logout no smoke.
+- Commit 05 CRM seeds: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida dashboard com `Pipeline seedado`.
 - Pre-deploy Render: `npm ci && npm run build` passou.
 - Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
 - Smoke Render em `https://solar-care-web.onrender.com`: passou.

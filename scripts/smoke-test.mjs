@@ -5,7 +5,11 @@ const port = process.env.SMOKE_PORT ?? "3100";
 const externalUrl = process.env.SMOKE_TEST_URL;
 const baseUrl = externalUrl ?? `http://${host}:${port}`;
 const landingExpectedTexts = ["Entrar no ERP", "Solicitar diagnostico solar"];
-const dashboardExpectedTexts = ["Dashboard Solar Care", "Demo Solar Care"];
+const dashboardExpectedTexts = [
+  "Dashboard Solar Care",
+  "Demo Solar Care",
+  "Pipeline seedado",
+];
 
 function delay(ms) {
   return new Promise((resolve) => {

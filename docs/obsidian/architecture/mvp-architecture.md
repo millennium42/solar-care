@@ -38,7 +38,7 @@ Se o primeiro commit usar um unico app Next.js sem monorepo, preservar a mesma s
 
 ## Banco
 
-Comecar com SQLite para desenvolvimento e demo sem dependencia externa. Preparar o adaptador para Postgres quando `DATABASE_URL` existir.
+Comecar com SQLite para desenvolvimento e demo sem dependencia externa. Enquanto o app ainda nao tem ORM/banco instalado, o Commit 05 usa repositorios in-memory tipados com seeds automaticos e fronteira pronta para substituir por SQLite. Preparar o adaptador para Postgres quando `DATABASE_URL` existir.
 
 Entidades iniciais:
 
