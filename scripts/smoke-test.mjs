@@ -15,6 +15,11 @@ const crmExpectedTexts = [
   "Funil comercial",
   "Condominio Aurora",
 ];
+const solarExpectedTexts = [
+  "Operacoes solares",
+  "Agro Sol Noroeste",
+  "48,2",
+];
 
 function delay(ms) {
   return new Promise((resolve) => {
@@ -152,6 +157,18 @@ async function main() {
     });
     const crmHtml = await crmResponse.text();
     assertHtmlIncludes(crmHtml, crmExpectedTexts);
+
+    const solarResponse = await waitForHttp(
+      new URL("/app/solar", baseUrl),
+      30000,
+      {
+        headers: {
+          cookie: cookieHeader,
+        },
+      },
+    );
+    const solarHtml = await solarResponse.text();
+    assertHtmlIncludes(solarHtml, solarExpectedTexts);
 
     const logoutResponse = await fetch(new URL("/demo-logout", baseUrl), {
       cache: "no-store",

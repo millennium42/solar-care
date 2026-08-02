@@ -47,5 +47,5 @@ A rota `/app/crm` entrega:
 
 ## Proximos incrementos
 
-- Conectar oportunidades CRM a projetos solares no Commit 07.
+- Enviar dados CRM para ferramentas de instaladora no Commit 08.
 - Substituir o repositorio in-memory por SQLite quando a persistencia real entrar, preservando os contratos de dominio.

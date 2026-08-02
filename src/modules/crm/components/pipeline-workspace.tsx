@@ -90,8 +90,8 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
             {[
               ["Dashboard", "/app"],
               ["CRM", "/app/crm"],
-              ["Projetos solares", "/app/crm"],
-              ["Operacoes", "/app/crm"],
+              ["Projetos solares", "/app/solar"],
+              ["Operacoes", "/app/solar"],
             ].map(([label, href]) => (
               <a
                 className="rounded-md px-2 py-2 text-sm font-medium hover:bg-[color:var(--field-soft)]"

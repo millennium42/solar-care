@@ -26,9 +26,9 @@ A primeira tela publica e uma pagina institucional da empresa ficticia `Solar Ca
 2. Entrar no ERP com usuario demo automatico via `/demo-login`.
 3. Visualizar dashboard protegido com receita prevista, projetos ativos, pendencias e economia estimada.
 4. Gerenciar contas, contatos, oportunidades e atividades seedadas em workspace CRM inspirado no Twenty.
-5. Criar proposta solar a partir de consumo mensal e tamanho do telhado.
-6. Converter oportunidade em projeto de instalacao.
-7. Acompanhar vistoria, instalacao, comissionamento e pos-venda.
+5. Visualizar projetos solares conectados a oportunidades CRM.
+6. Acompanhar proposta, vistoria, equipamentos e status de instalacao.
+7. Evoluir ferramentas de calculo, checklist e documentos pendentes.
 
 ## Ferramentas criativas para instaladoras
 

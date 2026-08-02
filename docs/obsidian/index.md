@@ -13,6 +13,7 @@ Este vault documenta o MVP Solar Care para uso em Obsidian, RAG local e handoff 
 - [[modules/auth|Modulo auth]]
 - [[modules/analytics|Modulo analytics]]
 - [[modules/crm|Modulo CRM]]
+- [[modules/solar|Modulo Solar]]
 - [[modules/marketing|Modulo marketing]]
 - [[modules/shared|Modulo shared]]
 - [[prompts/00-master-prompt|Prompt master]]

@@ -24,8 +24,8 @@ import {
 const modules = [
   ["Dashboard", "/app"],
   ["CRM", "/app/crm"],
-  ["Projetos solares", "/app"],
-  ["Operacoes", "/app"],
+  ["Projetos solares", "/app/solar"],
+  ["Operacoes", "/app/solar"],
   ["Documentos", "/app"],
   ["Ferramentas", "/app"],
 ];
