@@ -8,6 +8,7 @@ dist/
 coverage/
 playwright-report/
 test-results/
+tsconfig.tsbuildinfo
 
 .env
 .env.*

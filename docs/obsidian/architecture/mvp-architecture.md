@@ -56,10 +56,14 @@ Entidades iniciais:
 
 ## Deploy
 
-Render Web Service Node:
+Render Blueprint no workspace `Demos`, com Web Service Node e Environment Group:
 
 - `npm ci && npm run build`
 - `npm start`
+- `render.yaml` na raiz do repositorio
+- Project `solar-care`, environment `production`
+- Environment Group `solar-care-production`
+- Healthcheck `/api/health`
 - Branch `main`
 - Auto deploy ligado
 

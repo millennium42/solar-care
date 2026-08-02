@@ -1,0 +1,31 @@
+version: "1"
+
+previews:
+  generation: off
+
+projects:
+  - name: solar-care
+    environments:
+      - name: production
+        envVarGroups:
+          - name: solar-care-production
+            envVars:
+              - key: APP_ENV
+                value: production
+              - key: NEXT_TELEMETRY_DISABLED
+                value: "1"
+              - key: DEMO_USER_EMAIL
+                value: demo@solarcare.local
+        services:
+          - type: web
+            name: solar-care-web
+            runtime: node
+            plan: free
+            region: virginia
+            branch: main
+            buildCommand: npm ci && npm run build
+            startCommand: npm start
+            healthCheckPath: /api/health
+            autoDeployTrigger: commit
+            envVars:
+              - fromGroup: solar-care-production

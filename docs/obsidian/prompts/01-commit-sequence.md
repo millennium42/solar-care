@@ -83,7 +83,7 @@ Atualize docs/obsidian com guias de usuario e dev por modulo existente. Cada tel
 ## Commit 12 - Render Readiness
 
 ```text
-Adicione `.env.example`, healthcheck, ajustes de start/build e documentacao de deploy Render. Validar `npm ci`, build e start local. Nao criar servico Render ainda se nao houver repo remoto Git. Rode smoke tests. Commit: `chore(render): prepare web service deployment`.
+Adicione ou refine `.env.example`, healthcheck, ajustes de start/build, Blueprint Render `render.yaml` e documentacao de deploy Render. O deploy deve usar o workspace Render `Demos`, Project `solar-care`, Environment `production`, Web Service Node `solar-care-web` e Environment Group `solar-care-production`. Validar `npm ci`, build e start local. Nao criar/sincronizar Blueprint no Render ainda se nao houver repo remoto Git. Rode smoke tests. Commit: `chore(render): prepare web service deployment`.
 ```
 
 ## Revisao 03
@@ -95,7 +95,7 @@ Use $solar-code-review. Revisao completa pre-deploy. Confirmar P0=0/P1=0, rotas 
 ## Commit 13 - Deploy Render
 
 ```text
-Se existir remoto Git acessivel pelo Render, use o conector Render para criar Web Service Node. Build command: `npm ci && npm run build`. Start command: `npm start`. Auto deploy na branch main. Monitore deploy ate estado terminal. Registre URL publicada em memory.md e docs/obsidian/render-deploy.md. Commit: `chore(render): record production demo deployment`.
+Se existir remoto Git acessivel pelo Render, use o conector Render no workspace `Demos` para criar/sincronizar o Blueprint `render.yaml`. O Blueprint deve criar Web Service Node com build command `npm ci && npm run build`, start command `npm start`, auto deploy na branch main e Environment Group `solar-care-production`. Monitore deploy ate estado terminal. Registre URL publicada em memory.md e docs/obsidian/render-deploy.md. Commit: `chore(render): record production demo deployment`.
 ```
 
 ## Commit 14 - Polish Demo

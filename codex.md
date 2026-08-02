@@ -88,11 +88,12 @@ Permitido sem autenticacao:
 
 ## Render
 
-O deploy demo deve usar Render Web Service:
+O deploy demo deve usar Render Blueprint no workspace Render `Demos`, criando um Web Service Node e um Environment Group versionados em `render.yaml`:
 
 - Build command esperado: `npm ci && npm run build`.
 - Start command esperado: `npm start`.
 - Auto deploy ligado na branch `main`.
 - Variaveis devem vir de `.env.example`, sem segredos reais no repo.
+- Environment Group inicial: `solar-care-production`.
 
 Nao criar servico Render ate existir URL de repositorio remoto que o Render possa clonar.
