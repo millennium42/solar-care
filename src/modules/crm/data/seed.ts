@@ -5,6 +5,8 @@ import type {
   Opportunity,
 } from "@/modules/crm/types";
 
+type ActivitySeed = Omit<Activity, "dueLabel">;
+
 export const accounts: Account[] = [
   {
     city: "Ribeirao Preto",
@@ -146,11 +148,10 @@ export const opportunities: Opportunity[] = [
   },
 ];
 
-export const activities: Activity[] = [
+export const activities: ActivitySeed[] = [
   {
     accountId: "acc-aurora",
     dueAt: "2026-08-02T14:00:00-03:00",
-    dueLabel: "Hoje",
     id: "act-aurora-vistoria",
     notes: "Confirmar acesso ao barrilete e sala tecnica.",
     opportunityId: "opp-aurora-18kw",
@@ -161,7 +162,6 @@ export const activities: Activity[] = [
   {
     accountId: "acc-padaria-central",
     dueAt: "2026-08-03T10:30:00-03:00",
-    dueLabel: "Amanha",
     id: "act-padaria-proposta",
     notes: "Revisar horario de pico e troca de medidor.",
     opportunityId: "opp-padaria-9kw",
@@ -172,7 +172,6 @@ export const activities: Activity[] = [
   {
     accountId: "acc-agro-sol",
     dueAt: "2026-08-04T09:00:00-03:00",
-    dueLabel: "2 dias",
     id: "act-agro-equipe",
     notes: "Checar disponibilidade de equipe e caminhonete.",
     opportunityId: "opp-agro-48kw",
@@ -183,7 +182,6 @@ export const activities: Activity[] = [
   {
     accountId: "acc-casa-martins",
     dueAt: "2026-08-05T16:00:00-03:00",
-    dueLabel: "3 dias",
     id: "act-martins-ligacao",
     notes: "Validar padrao de entrada e consumo mensal.",
     opportunityId: "opp-martins-6kw",
@@ -194,7 +192,6 @@ export const activities: Activity[] = [
   {
     accountId: "acc-aurora",
     dueAt: "2026-07-31T11:00:00-03:00",
-    dueLabel: "Concluida",
     id: "act-aurora-email",
     notes: "Conta de luz recebida e anexada ao dossie.",
     opportunityId: "opp-aurora-18kw",

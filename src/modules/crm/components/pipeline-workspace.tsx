@@ -15,6 +15,7 @@ import {
   listActivities,
   listContacts,
   listOpportunities,
+  validateCrmSeedIntegrity,
 } from "@/modules/crm";
 import type { OpportunityStage } from "@/modules/crm";
 import { Button } from "@/modules/shared/ui/button";
@@ -37,6 +38,8 @@ function formatCurrency(value: number) {
 }
 
 export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
+  validateCrmSeedIntegrity();
+
   const accounts = listAccounts();
   const contacts = listContacts();
   const opportunities = listOpportunities();
@@ -48,6 +51,36 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
   const opportunitiesById = new Map(
     opportunities.map((opportunity) => [opportunity.id, opportunity]),
   );
+
+  function requireAccount(accountId: string) {
+    const account = accountsById.get(accountId);
+
+    if (!account) {
+      throw new Error(`Missing CRM account: ${accountId}`);
+    }
+
+    return account;
+  }
+
+  function requireOpportunity(opportunityId: string) {
+    const opportunity = opportunitiesById.get(opportunityId);
+
+    if (!opportunity) {
+      throw new Error(`Missing CRM opportunity: ${opportunityId}`);
+    }
+
+    return opportunity;
+  }
+
+  function requirePrimaryContact(accountId: string) {
+    const contact = contactsByAccount.get(accountId);
+
+    if (!contact) {
+      throw new Error(`Missing primary CRM contact for account: ${accountId}`);
+    }
+
+    return contact;
+  }
 
   return (
     <main className="min-h-screen bg-[color:var(--background)]">
@@ -187,7 +220,7 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
                         </div>
                         <div className="grid gap-3">
                           {columnOpportunities.map((opportunity) => {
-                            const account = accountsById.get(
+                            const account = requireAccount(
                               opportunity.accountId,
                             );
 
@@ -197,7 +230,7 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
                                 key={opportunity.id}
                               >
                                 <p className="truncate text-sm font-semibold">
-                                  {account?.name}
+                                  {account.name}
                                 </p>
                                 <p className="mt-1 line-clamp-2 text-xs leading-5 text-[color:var(--muted)]">
                                   {opportunity.title}
@@ -230,9 +263,9 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
               </div>
               <div className="grid gap-3">
                 {activities.map((activity) => {
-                  const account = accountsById.get(activity.accountId);
+                  const account = requireAccount(activity.accountId);
                   const opportunity = activity.opportunityId
-                    ? opportunitiesById.get(activity.opportunityId)
+                    ? requireOpportunity(activity.opportunityId)
                     : undefined;
 
                   return (
@@ -246,7 +279,7 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
                             {activity.title}
                           </p>
                           <p className="truncate text-xs text-[color:var(--muted)]">
-                            {account?.name}
+                            {account.name}
                           </p>
                         </div>
                         <span className="shrink-0 rounded-md bg-[color:var(--sky-soft)] px-2 py-1 text-xs font-semibold text-[color:var(--sky)]">
@@ -282,7 +315,7 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
                   <span className="text-right">kWp</span>
                 </div>
                 {accounts.map((account) => {
-                  const contact = contactsByAccount.get(account.id);
+                  const contact = requirePrimaryContact(account.id);
 
                   return (
                     <div
@@ -296,9 +329,9 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
                         </p>
                       </div>
                       <div className="min-w-0">
-                        <p className="truncate font-medium">{contact?.name}</p>
+                        <p className="truncate font-medium">{contact.name}</p>
                         <p className="truncate text-xs text-[color:var(--muted)]">
-                          {contact?.role}
+                          {contact.role}
                         </p>
                       </div>
                       <span className="text-right font-medium">
@@ -334,7 +367,7 @@ export function CrmPipelineWorkspace({ user }: { user: DemoUser }) {
                           {contact.name}
                         </p>
                         <p className="truncate text-xs text-[color:var(--muted)]">
-                          {accountsById.get(contact.accountId)?.name}
+                          {requireAccount(contact.accountId).name}
                         </p>
                       </div>
                       <span className="shrink-0 rounded-md bg-[color:var(--field-soft)] px-2 py-1 text-xs font-semibold text-[color:var(--field)]">

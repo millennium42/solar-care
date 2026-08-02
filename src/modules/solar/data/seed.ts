@@ -8,6 +8,8 @@ import type {
   SurveyChecklistItem,
 } from "@/modules/solar/types";
 
+type DocumentChecklistSeed = Omit<DocumentChecklistItem, "dueLabel">;
+
 export const solarProjects: SolarProject[] = [
   {
     accountId: "acc-aurora",
@@ -209,9 +211,9 @@ export const surveyChecklistItems: SurveyChecklistItem[] = [
   },
 ];
 
-export const documentChecklistItems: DocumentChecklistItem[] = [
+export const documentChecklistItems: DocumentChecklistSeed[] = [
   {
-    dueLabel: "Hoje",
+    dueAt: "2026-08-02",
     id: "doc-aurora-art",
     owner: "Engenharia",
     projectId: "sp-aurora",
@@ -219,7 +221,7 @@ export const documentChecklistItems: DocumentChecklistItem[] = [
     title: "ART do projeto",
   },
   {
-    dueLabel: "Amanha",
+    dueAt: "2026-08-03",
     id: "doc-padaria-titularidade",
     owner: "Cliente",
     projectId: "sp-padaria",
@@ -227,7 +229,7 @@ export const documentChecklistItems: DocumentChecklistItem[] = [
     title: "Comprovante de titularidade",
   },
   {
-    dueLabel: "2 dias",
+    dueAt: "2026-08-04",
     id: "doc-agro-homologacao",
     owner: "Operacoes",
     projectId: "sp-agro",
@@ -235,7 +237,7 @@ export const documentChecklistItems: DocumentChecklistItem[] = [
     title: "Protocolo de homologacao",
   },
   {
-    dueLabel: "Concluido",
+    dueAt: "2026-07-31",
     id: "doc-agro-contrato",
     owner: "Comercial",
     projectId: "sp-agro",

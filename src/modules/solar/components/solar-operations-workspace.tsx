@@ -19,6 +19,7 @@ import {
   listSiteSurveys,
   listSolarProjects,
   listSurveyChecklistItems,
+  validateSolarSeedIntegrity,
 } from "@/modules/solar";
 import type {
   InstallationMilestoneStatus,
@@ -52,6 +53,8 @@ function formatCurrency(value: number) {
 }
 
 export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
+  validateSolarSeedIntegrity();
+
   const accounts = listAccounts();
   const opportunities = listOpportunities();
   const projects = listSolarProjects();
@@ -66,6 +69,38 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
   const opportunitiesById = new Map(
     opportunities.map((opportunity) => [opportunity.id, opportunity]),
   );
+
+  function requireAccount(accountId: string) {
+    const account = accountsById.get(accountId);
+
+    if (!account) {
+      throw new Error(`Missing CRM account for solar project: ${accountId}`);
+    }
+
+    return account;
+  }
+
+  function requireOpportunity(opportunityId: string) {
+    const opportunity = opportunitiesById.get(opportunityId);
+
+    if (!opportunity) {
+      throw new Error(
+        `Missing CRM opportunity for solar project: ${opportunityId}`,
+      );
+    }
+
+    return opportunity;
+  }
+
+  function requireProject(projectId: string) {
+    const project = projects.find((item) => item.id === projectId);
+
+    if (!project) {
+      throw new Error(`Missing solar project: ${projectId}`);
+    }
+
+    return project;
+  }
 
   return (
     <main className="min-h-screen bg-[color:var(--background)]">
@@ -179,8 +214,8 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
             </div>
             <div className="grid gap-4 xl:grid-cols-3">
               {projects.map((project) => {
-                const account = accountsById.get(project.accountId);
-                const opportunity = opportunitiesById.get(project.opportunityId);
+                const account = requireAccount(project.accountId);
+                const opportunity = requireOpportunity(project.opportunityId);
                 const proposal = proposals.find(
                   (item) => item.projectId === project.id,
                 );
@@ -193,7 +228,7 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <p className="truncate text-base font-semibold">
-                          {account?.name}
+                          {account.name}
                         </p>
                         <p className="truncate text-xs text-[color:var(--muted)]">
                           {project.name}
@@ -234,7 +269,7 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
                       />
                     </div>
                     <p className="mt-4 line-clamp-2 text-xs leading-5 text-[color:var(--muted)]">
-                      {opportunity?.title}
+                      {opportunity.title}
                     </p>
                   </article>
                 );
@@ -252,15 +287,11 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
               </div>
               <div className="grid gap-3">
                 {surveys.map((survey) => {
-                  const project = projects.find(
-                    (item) => item.id === survey.projectId,
-                  );
+                  const project = requireProject(survey.projectId);
                   const proposal = proposals.find(
                     (item) => item.projectId === survey.projectId,
                   );
-                  const account = project
-                    ? accountsById.get(project.accountId)
-                    : undefined;
+                  const account = requireAccount(project.accountId);
 
                   return (
                     <article
@@ -270,7 +301,7 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <p className="truncate text-sm font-semibold">
-                            {account?.name}
+                            {account.name}
                           </p>
                           <p className="truncate text-xs text-[color:var(--muted)]">
                             Telhado: {survey.roofType}
@@ -307,12 +338,8 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
               </div>
               <div className="grid gap-3">
                 {milestones.map((milestone) => {
-                  const project = projects.find(
-                    (item) => item.id === milestone.projectId,
-                  );
-                  const account = project
-                    ? accountsById.get(project.accountId)
-                    : undefined;
+                  const project = requireProject(milestone.projectId);
+                  const account = requireAccount(project.accountId);
 
                   return (
                     <article
@@ -325,7 +352,7 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
                             {milestone.title}
                           </p>
                           <p className="truncate text-xs text-[color:var(--muted)]">
-                            {account?.name} - {milestone.owner}
+                            {account.name} - {milestone.owner}
                           </p>
                         </div>
                         <span className="shrink-0 rounded-md bg-[color:var(--solar-soft)] px-2 py-1 text-xs font-semibold text-[#6c4a08]">
@@ -357,16 +384,14 @@ export function SolarOperationsWorkspace({ user }: { user: DemoUser }) {
                 <span>Modelo</span>
               </div>
               {equipment.map((item) => {
-                const project = projects.find(
-                  (projectItem) => projectItem.id === item.projectId,
-                );
+                const project = requireProject(item.projectId);
 
                 return (
                   <div
                     className="grid min-w-[720px] grid-cols-[1fr_1fr_88px_1fr] gap-3 border-b border-[color:var(--line)] px-3 py-3 text-sm last:border-b-0"
                     key={item.id}
                   >
-                    <span className="truncate font-medium">{project?.name}</span>
+                    <span className="truncate font-medium">{project.name}</span>
                     <span className="truncate">{item.manufacturer}</span>
                     <span className="text-right font-semibold">
                       {item.quantity} {item.unit}

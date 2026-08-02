@@ -42,6 +42,10 @@ function parseNumber(value: string) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function parsePositiveNumber(value: string) {
+  return Math.max(parseNumber(value), 0);
+}
+
 export function InstallerProductivityTools({
   checklistItems,
   documentItems,
@@ -65,11 +69,11 @@ export function InstallerProductivityTools({
     (item) => checkedItems[item.id],
   ).length;
   const estimate = useMemo(() => {
-    const bill = parseNumber(monthlyBill);
+    const bill = parsePositiveNumber(monthlyBill);
     const energyTariff = Math.max(parseNumber(tariff), 0.1);
     const monthlyKwh = bill / energyTariff;
     const systemKw = monthlyKwh / 140;
-    const panels = Math.max(Math.ceil((systemKw * 1000) / 550), 1);
+    const panels = systemKw > 0 ? Math.ceil((systemKw * 1000) / 550) : 0;
     const investment = systemKw * 4200;
     const monthlySavings = bill * 0.82;
     const paybackMonths = investment / Math.max(monthlySavings, 1);
@@ -91,7 +95,7 @@ export function InstallerProductivityTools({
   }
 
   return (
-    <section>
+    <section id="ferramentas">
       <div className="mb-3">
         <p className="text-sm font-semibold uppercase tracking-normal text-[color:var(--sky)]">
           Ferramentas de instaladora
@@ -172,7 +176,10 @@ export function InstallerProductivityTools({
         </div>
 
         <div className="grid gap-6">
-          <div className="rounded-lg border border-[color:var(--line)] bg-white p-4 shadow-sm">
+          <div
+            className="rounded-lg border border-[color:var(--line)] bg-white p-4 shadow-sm"
+            id="documentos"
+          >
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[color:var(--field-soft)] text-[color:var(--field)]">

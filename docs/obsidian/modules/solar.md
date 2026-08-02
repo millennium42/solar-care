@@ -43,6 +43,8 @@ A rota `/app/solar` entrega:
 
 `solar` nao depende diretamente de `analytics` ou `marketing`. A tela de app pode compor dados Solar e CRM, mas os seeds de dominio continuam separados.
 
+`validateSolarSeedIntegrity` falha cedo quando projeto, vistoria, proposta, equipamento, marco ou documento referencia uma entidade inexistente.
+
 ## Proximos incrementos
 
 - Revisao 02 deve validar acoplamento CRM/Solar, utilidade das ferramentas e responsividade.

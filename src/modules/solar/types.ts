@@ -84,6 +84,7 @@ export type SurveyChecklistItem = {
 };
 
 export type DocumentChecklistItem = {
+  dueAt: string;
   dueLabel: string;
   id: string;
   owner: string;

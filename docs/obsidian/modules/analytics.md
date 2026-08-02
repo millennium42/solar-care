@@ -9,12 +9,13 @@
 
 Mostrar a primeira area interna do ERP/CRM apos o login demo.
 
-No Commit 05, o dashboard ainda e uma primeira area operacional, mas ja consome os seeds CRM:
+No bloco 05-08, o dashboard ainda e uma primeira area operacional, mas ja consome os seeds CRM e aponta para modulos operacionais:
 
-- KPIs de receita prevista, projetos ativos, leads e pendencias;
+- KPIs de receita prevista, pipeline aberto, leads e atividades abertas;
 - fila operacional de clientes solares;
 - pipeline seedado de oportunidades;
 - indicacao de que login demo, guard de rota e area ERP estao ativos.
+- navegacao para CRM, Solar, documentos e ferramentas.
 
 ## Fronteiras
 

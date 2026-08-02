@@ -7,6 +7,7 @@ export {
   listSiteSurveys,
   listSolarProjects,
   listSurveyChecklistItems,
+  validateSolarSeedIntegrity,
 } from "@/modules/solar/repositories/solar-repository";
 export type {
   DocumentChecklistItem,

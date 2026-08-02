@@ -26,8 +26,8 @@ const modules = [
   ["CRM", "/app/crm"],
   ["Projetos solares", "/app/solar"],
   ["Operacoes", "/app/solar"],
-  ["Documentos", "/app"],
-  ["Ferramentas", "/app"],
+  ["Documentos", "/app/solar#documentos"],
+  ["Ferramentas", "/app/solar#ferramentas"],
 ];
 
 const verticalStatus = [
@@ -42,9 +42,9 @@ const verticalStatus = [
     title: "Area ERP",
   },
   {
-    description: "Revisao rigorosa 01",
+    description: "Revisao rigorosa 02",
     Icon: Clock3,
-    title: "Proximo commit",
+    title: "Checkpoint atual",
   },
 ];
 

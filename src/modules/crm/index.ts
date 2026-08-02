@@ -1,9 +1,11 @@
 export {
   getCrmDashboardSnapshot,
+  getActivityDueLabel,
   listAccounts,
   listActivities,
   listContacts,
   listOpportunities,
+  validateCrmSeedIntegrity,
 } from "@/modules/crm/repositories/crm-repository";
 export type {
   Account,

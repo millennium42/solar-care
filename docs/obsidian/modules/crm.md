@@ -29,7 +29,7 @@ As contas demo representam a instaladora ficticia Solar Care Energia atendendo:
 - `Agro Sol Noroeste`;
 - `Residencia Martins`.
 
-Cada conta tem contato principal, oportunidade comercial e atividades de acompanhamento. O dashboard protegido consome `getCrmDashboardSnapshot` para exibir KPIs, fila operacional e pipeline seedado.
+Cada conta tem contato principal, oportunidade comercial e atividades de acompanhamento. O dashboard protegido consome `getCrmDashboardSnapshot` para exibir KPIs, fila operacional e pipeline seedado. Labels de prazo sao calculados no repositorio para evitar que a demo envelheca com textos fixos.
 
 ## Tela CRM
 
@@ -44,6 +44,8 @@ A rota `/app/crm` entrega:
 ## Fronteiras
 
 `crm` nao depende de `analytics`, `marketing` ou `auth`. Outros modulos podem ler dados CRM pelo repositorio exportado em `src/modules/crm/index.ts`.
+
+`validateCrmSeedIntegrity` falha cedo quando contato, oportunidade ou atividade referencia uma entidade inexistente.
 
 ## Proximos incrementos
 

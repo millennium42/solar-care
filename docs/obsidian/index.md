@@ -20,6 +20,7 @@ Este vault documenta o MVP Solar Care para uso em Obsidian, RAG local e handoff 
 - [[prompts/01-commit-sequence|Sequencia de commits]]
 - [[reviews/review-cadence|Cadencia de revisao]]
 - [[reviews/review-01|Revisao 01]]
+- [[reviews/review-02|Revisao 02]]
 - [[render-deploy|Deploy no Render]]
 - [[skills|Skills locais]]
 
