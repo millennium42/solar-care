@@ -1,6 +1,16 @@
-# Skills Locais
+# Skills Codex
 
-Foram criadas tres skills em `~/.codex/skills` para reduzir repeticao em tarefas futuras.
+As skills canonicas ficam versionadas em `.codex/skills`. O diretorio `${CODEX_HOME:-$HOME/.codex}/skills` e apenas a copia local usada pelo Codex na maquina atual.
+
+## Sincronizacao
+
+Rode:
+
+```bash
+./scripts/sync-codex-skills.sh
+```
+
+Depois de alterar qualquer skill versionada, rode o script novamente para atualizar a copia local.
 
 ## `$solar-code-review`
 
@@ -16,4 +26,4 @@ Use para validar que landing, login demo, dashboard, build e rotas criticas cont
 
 ## Observacao
 
-As skills entram como apoio ao processo. A fonte de verdade do projeto continua sendo [codex.md](../../codex.md) e [memory.md](../../memory.md).
+As skills entram como apoio ao processo. A fonte de verdade versionada e composta por [codex.md](../../codex.md), [memory.md](../../memory.md) e `.codex/skills`.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Solar Component Builder"
+  short_description: "Componentes consistentes para Solar Care"
+  default_prompt: "Use $solar-component-builder para criar um componente modular do Solar Care com testes."

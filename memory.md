@@ -7,11 +7,12 @@
 - Node instalado via `nvm`: `v24.18.1`; npm: `11.16.0`.
 - Arquivo [.nvmrc](.nvmrc) fixa `24.18.1`.
 - Conector Render foi localizado e esta disponivel na sessao, mas nenhum servico foi criado porque ainda nao existe repositorio remoto Git.
-- Skills locais criadas em `~/.codex/skills`.
+- Skills canonicas versionadas em `.codex/skills` e sincronizadas para `${CODEX_HOME:-$HOME/.codex}/skills`.
 
 ## Decisoes
 
 - Ponytail prevalece: entregar uma fatia vertical funcionando antes de expandir.
+- Politicas e skills devem permanecer versionadas no Git para que agentes usem as mesmas regras em todas as maquinas.
 - MVP no Render sera um web service Node simples, com arquitetura modular interna e caminho Kubernetes-ready documentado.
 - Ferramentas que exigem autenticacao ficam fora ate o usuario fornecer credenciais.
 - CRM deve ser fortemente inspirado nos fluxos de Twenty, mas sem copiar codigo, marca ou assets.

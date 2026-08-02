@@ -1,0 +1,4 @@
+interface:
+  display_name: "Solar Smoke Test"
+  short_description: "Smoke tests obrigatorios do Solar Care"
+  default_prompt: "Use $solar-smoke-test para validar que o Solar Care continua funcionando apos mudancas."

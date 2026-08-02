@@ -1,0 +1,4 @@
+interface:
+  display_name: "Solar Code Review"
+  short_description: "Revisao rigorosa para Solar Care"
+  default_prompt: "Use $solar-code-review para revisar uma mudanca do Solar Care antes do commit."

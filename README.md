@@ -9,10 +9,18 @@ Este repositorio comeca como um pacote de governanca e prompts para conduzir a e
 - Git inicializado na branch `main`.
 - Node LTS instalado via `nvm`; versao fixada em [.nvmrc](.nvmrc).
 - Documentacao modular em estilo Obsidian em [docs/obsidian/index.md](docs/obsidian/index.md).
-- Skills locais do Codex criadas em `~/.codex/skills`:
+- Skills do Codex versionadas em [.codex/skills](.codex/skills) e sincronizaveis para `${CODEX_HOME:-$HOME/.codex}/skills`:
   - `$solar-code-review`
   - `$solar-component-builder`
   - `$solar-smoke-test`
+
+## Sincronizar skills
+
+Para ativar as skills versionadas nesta maquina:
+
+```bash
+./scripts/sync-codex-skills.sh
+```
 
 ## Proximo passo recomendado
 
