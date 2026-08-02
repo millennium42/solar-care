@@ -12,7 +12,7 @@
 - [.env.example](.env.example) criado sem segredos reais para refletir as variaveis do Environment Group.
 - Landing reestruturada para pagina institucional da instaladora ficticia `Solar Care Energia`, nao para vender o software ERP.
 - Conector Render foi localizado e esta disponivel na sessao, mas nenhum servico foi criado porque o Blueprint ainda nao foi sincronizado no Render.
-- Repositorio GitHub criado como privado: `https://github.com/millennium42/solar-care`.
+- Repositorio GitHub publico: `https://github.com/millennium42/solar-care`.
 - Remote local `origin`: `https://github.com/millennium42/solar-care.git`.
 - Workspace Render alvo: `Demos`.
 - Deploy Render deve ser criado via Blueprint `render.yaml`, com Environment Group `solar-care-production` e Web Service `solar-care-web`.
@@ -34,7 +34,7 @@
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
-2. Confirmar que o Render workspace `Demos` tem acesso ao repo privado ou tornar o repo publico antes do deploy.
+2. Usar o repo publico `https://github.com/millennium42/solar-care` para o Blueprint no Render workspace `Demos`.
 3. Seguir o Prompt 02 para design system base.
 4. Fazer revisao rigorosa no primeiro checkpoint apos o Commit 04.
 

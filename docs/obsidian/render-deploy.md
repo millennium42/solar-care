@@ -4,7 +4,7 @@
 
 O conector Render esta disponivel nesta sessao. Nenhum servico foi criado ainda.
 
-Repositorio GitHub remoto criado como privado: [millennium42/solar-care](https://github.com/millennium42/solar-care).
+Repositorio GitHub remoto publico: [millennium42/solar-care](https://github.com/millennium42/solar-care).
 
 O workspace Render alvo e `Demos`. O deploy deve ser criado/sincronizado como Blueprint usando o arquivo [../../render.yaml](../../render.yaml).
 
@@ -64,4 +64,4 @@ Possiveis variaveis futuras:
 5. Rodar smoke test contra a URL publicada.
 6. Registrar URL em `memory.md`.
 
-Como o repo foi criado privado, confirmar acesso do Render ao GitHub `millennium42/solar-care` antes de tentar o deploy.
+O repo esta publico, entao o Render pode clonar `https://github.com/millennium42/solar-care` para criar/sincronizar o Blueprint no workspace `Demos`.
