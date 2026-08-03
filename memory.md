@@ -50,12 +50,13 @@
 - Revisao 02 encontrou P0=0/P1=0; P2 de calculadora negativa, navegacao, labels de prazo e integridade de seeds foram corrigidos.
 - Dashboard ERP criado em `/app` agregando CRM e Solar com receita prevista, taxa de conversao, capacidade, pendencias e economia mensal.
 - RAG local criado em `/app/assistant` com busca lexical em docs Obsidian e seeds CRM/Solar, sem servico externo.
+- Guias de usuario, dev e mapa de modulos criados em `docs/obsidian/guides`.
 
 ## Proximas acoes
 
 1. Push da branch `main` para `origin`.
 2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
-3. Seguir o Prompt 11 para guias de usuario e dev.
+3. Seguir o Prompt 12 para readiness Render.
 4. Revisao 03 deve acontecer apos o Commit 12.
 
 ## Ultima validacao local
@@ -79,6 +80,7 @@ Executada em 2026-08-02 no workspace WSL:
 - Revisao 02 hardening: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram apos corrigir P2 de calculadora, navegacao, labels de prazo e integridade de seeds.
 - Commit 09 Dashboard ERP: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; `/app` agora agrega CRM e Solar.
 - Commit 10 RAG local: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram; smoke valida `/app/assistant?q=documento`.
+- Commit 11 guias: `npm run lint`, `npm run typecheck`, `npm run build` e `npm run smoke` passaram apos criar guias de usuario/dev.
 - Pre-deploy Render: `npm ci && npm run build` passou.
 - Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
 - Smoke Render em `https://solar-care-web.onrender.com`: passou.

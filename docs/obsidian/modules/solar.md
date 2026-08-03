@@ -49,3 +49,8 @@ A rota `/app/solar` entrega:
 
 - Revisao 02 deve validar acoplamento CRM/Solar, utilidade das ferramentas e responsividade.
 - Persistencia SQLite futura deve preservar os contratos de `SolarProject`, `SiteSurvey`, `Proposal`, `Equipment`, `InstallationMilestone`, `SurveyChecklistItem` e `DocumentChecklistItem`.
+
+## Guias relacionados
+
+- [[../guides/user-demo-guide|Guia de usuario]]
+- [[../guides/developer-guide|Guia dev]]

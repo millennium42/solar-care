@@ -27,3 +27,8 @@ O dashboard pode receber sessao do modulo `auth`, componentes de `shared` e snap
 
 - Substituir dados in-memory por repositorio SQLite quando persistencia entrar.
 - Adicionar graficos leves somente se o dashboard precisar de comparacao temporal real.
+
+## Guias relacionados
+
+- [[../guides/user-demo-guide|Guia de usuario]]
+- [[../guides/developer-guide|Guia dev]]

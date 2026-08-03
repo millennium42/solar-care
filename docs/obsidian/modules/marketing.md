@@ -33,3 +33,8 @@ O modulo `marketing` pode importar configuracoes de `shared`, mas nao deve depen
 ## Proximos incrementos
 
 - Quando existir camada de dados, enviar leads demo ao modulo CRM seedado.
+
+## Guias relacionados
+
+- [[../guides/user-demo-guide|Guia de usuario]]
+- [[../guides/module-map|Mapa de modulos]]

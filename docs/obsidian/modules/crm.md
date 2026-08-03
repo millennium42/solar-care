@@ -51,3 +51,8 @@ A rota `/app/crm` entrega:
 
 - Enviar dados CRM para ferramentas de instaladora no Commit 08.
 - Substituir o repositorio in-memory por SQLite quando a persistencia real entrar, preservando os contratos de dominio.
+
+## Guias relacionados
+
+- [[../guides/user-demo-guide|Guia de usuario]]
+- [[../guides/developer-guide|Guia dev]]

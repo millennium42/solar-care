@@ -33,3 +33,8 @@ A rota `/app/assistant` recebe `q` por query string e renderiza:
 
 - Melhorar ranking quando houver mais documentos.
 - No futuro, trocar para embeddings locais ou Postgres/SQLite FTS sem quebrar o contrato `searchLocalKnowledge`.
+
+## Guias relacionados
+
+- [[../guides/user-demo-guide|Guia de usuario]]
+- [[../guides/developer-guide|Guia dev]]
