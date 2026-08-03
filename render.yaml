@@ -16,6 +16,8 @@ projects:
                 value: "1"
               - key: DEMO_USER_EMAIL
                 value: demo@solarcare.local
+              - key: NEXT_PUBLIC_APP_URL
+                value: https://solar-care-web.onrender.com
         services:
           - type: web
             name: solar-care-web

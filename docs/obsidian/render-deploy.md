@@ -53,6 +53,7 @@ Variaveis iniciais no Environment Group:
 - `APP_ENV=production`
 - `NEXT_TELEMETRY_DISABLED=1`
 - `DEMO_USER_EMAIL=demo@solarcare.local`
+- `NEXT_PUBLIC_APP_URL=https://solar-care-web.onrender.com`
 
 O arquivo [.env.example](../../.env.example) usa `APP_ENV=development` para uso local e nao contem segredos.
 
@@ -80,6 +81,22 @@ Executado em 2026-08-02:
 
 - Deploy `dep-d9nqk3vlk1mc738l15d0`: `live`.
 - Home: `https://solar-care-web.onrender.com` retornou HTTP 200.
-- Conteudo verificado: `Solar Care Energia`, `Entrar no ERP`, `Conhecer servicos` e headline institucional.
+- Conteudo verificado: `Solar Care Energia`, `Entrar no ERP`, `Solicitar diagnostico solar` e headline institucional.
 - Healthcheck: `https://solar-care-web.onrender.com/api/health` retornou HTTP 200.
-- Body do healthcheck: `{"ok":true,"service":"solar-care-web"}`.
+- Body do healthcheck inclui `ok`, `service`, `environment` e `uptime`.
+
+## Rotas criticas atuais
+
+- `/`
+- `/demo-login`
+- `/app`
+- `/app/crm`
+- `/app/solar`
+- `/app/assistant?q=documento`
+- `/api/health`
+
+O smoke local exercita login, cookie, dashboard, CRM, Solar, assistente e logout. O smoke de producao deve usar:
+
+```bash
+SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke
+```

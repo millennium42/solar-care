@@ -1,6 +1,6 @@
 # Solar Care
 
-CRM e ERP para empresas de energia solar.
+CRM e ERP para empresas de energia solar, com landing institucional da instaladora ficticia Solar Care Energia e login demo para area interna.
 
 Este repositorio comeca como um pacote de governanca e prompts para conduzir a entrega ponta a ponta de um MVP demonstravel no Render. A regra operacional principal esta em [codex.md](codex.md).
 
@@ -10,7 +10,7 @@ Este repositorio comeca como um pacote de governanca e prompts para conduzir a e
 - Repositorio GitHub remoto: [millennium42/solar-care](https://github.com/millennium42/solar-care).
 - Demo Render publicada: [solar-care-web.onrender.com](https://solar-care-web.onrender.com).
 - Node LTS instalado via `nvm`; versao fixada em [.nvmrc](.nvmrc).
-- App Next.js minimo criado com TypeScript, App Router e Tailwind.
+- App Next.js com landing, login demo, dashboard ERP, CRM, operacoes solares, ferramentas de instaladora e assistente local.
 - Caminho ativo de desenvolvimento WSL: `/home/millennium42/solar-care`.
 - O caminho Windows original em `/mnt/c/Users/Admin/Documents/Solar Care` deve ser sincronizado a partir do WSL quando houver commit novo.
 - Documentacao modular em estilo Obsidian em [docs/obsidian/index.md](docs/obsidian/index.md).
@@ -27,9 +27,14 @@ Para ativar as skills versionadas nesta maquina:
 ./scripts/sync-codex-skills.sh
 ```
 
-## Proximo passo recomendado
+## Fluxo demo
 
-Executar o Prompt 02 em [docs/obsidian/prompts/01-commit-sequence.md](docs/obsidian/prompts/01-commit-sequence.md) para adicionar o design system base.
+1. Landing publica: `/`
+2. Login demo: `/demo-login`
+3. Dashboard ERP: `/app`
+4. CRM: `/app/crm`
+5. Operacoes solares e ferramentas: `/app/solar`
+6. Assistente local: `/app/assistant`
 
 ## Desenvolvimento local
 
@@ -48,3 +53,13 @@ npm run typecheck
 npm run build
 npm run smoke
 ```
+
+## Render
+
+Contrato de deploy em [render.yaml](render.yaml):
+
+- build: `npm ci && npm run build`
+- start: `npm start`
+- healthcheck: `/api/health`
+- service: `solar-care-web`
+- environment group: `solar-care-production`

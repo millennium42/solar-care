@@ -89,3 +89,7 @@ Criar manifests Kubernetes somente depois do MVP publicado, revisado e demonstra
 - `/app/solar`: operacoes solares protegidas com projetos, propostas, vistorias e equipamentos.
 - `/app/assistant`: assistente local protegido com busca lexical em docs e seeds.
 - `/api/health`: healthcheck do Web Service.
+
+## Healthcheck
+
+`/api/health` retorna JSON com `ok`, `service`, `environment` e `uptime`.
