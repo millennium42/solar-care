@@ -10,6 +10,16 @@ import type {
 
 type DocumentChecklistSeed = Omit<DocumentChecklistItem, "dueLabel">;
 
+function dateOffset(daysFromToday: number) {
+  const date = new Date();
+  date.setDate(date.getDate() + daysFromToday);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 export const solarProjects: SolarProject[] = [
   {
     accountId: "acc-aurora",
@@ -213,7 +223,7 @@ export const surveyChecklistItems: SurveyChecklistItem[] = [
 
 export const documentChecklistItems: DocumentChecklistSeed[] = [
   {
-    dueAt: "2026-08-02",
+    dueAt: dateOffset(0),
     id: "doc-aurora-art",
     owner: "Engenharia",
     projectId: "sp-aurora",
@@ -221,7 +231,7 @@ export const documentChecklistItems: DocumentChecklistSeed[] = [
     title: "ART do projeto",
   },
   {
-    dueAt: "2026-08-03",
+    dueAt: dateOffset(1),
     id: "doc-padaria-titularidade",
     owner: "Cliente",
     projectId: "sp-padaria",
@@ -229,7 +239,7 @@ export const documentChecklistItems: DocumentChecklistSeed[] = [
     title: "Comprovante de titularidade",
   },
   {
-    dueAt: "2026-08-04",
+    dueAt: dateOffset(2),
     id: "doc-agro-homologacao",
     owner: "Operacoes",
     projectId: "sp-agro",
@@ -237,7 +247,7 @@ export const documentChecklistItems: DocumentChecklistSeed[] = [
     title: "Protocolo de homologacao",
   },
   {
-    dueAt: "2026-07-31",
+    dueAt: dateOffset(-1),
     id: "doc-agro-contrato",
     owner: "Comercial",
     projectId: "sp-agro",

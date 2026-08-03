@@ -27,6 +27,7 @@ O fluxo atual:
 - A sessao dura 8 horas e nao depende de banco, provedor OAuth nem ferramenta autenticada.
 - Este modulo pode importar `shared/config`, mas nao deve depender de CRM, Solar ou Analytics.
 - O valor fixo do cookie e aceito somente porque `/demo-login` e publico e ainda nao ha dados sensiveis no MVP; auth real deve substituir esse contrato antes de permissoes reais.
+- Redirecionamentos usam `NEXT_PUBLIC_APP_URL` ou headers `x-forwarded-*` para nao apontar para host interno do Render.
 
 ## Proximos incrementos
 

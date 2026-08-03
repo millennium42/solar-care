@@ -28,6 +28,7 @@ const assistantExpectedTexts = [
   "Busca local do MVP",
   "Documento:",
 ];
+const publicSmokeHost = "solar-care-web.onrender.com";
 
 function delay(ms) {
   return new Promise((resolve) => {
@@ -72,6 +73,14 @@ function getCookieHeader(response) {
   }
 
   return setCookie.split(";")[0];
+}
+
+function assertRedirectLocation(response, expectedPath) {
+  const location = response.headers.get("location") ?? "";
+
+  if (!location.endsWith(expectedPath) || location.includes("localhost")) {
+    throw new Error(`Unexpected redirect location: ${location}`);
+  }
 }
 
 function assertLoginCookieFlags(response) {
@@ -143,6 +152,7 @@ async function main() {
       throw new Error(`Demo login returned HTTP ${loginResponse.status}`);
     }
 
+    assertRedirectLocation(loginResponse, "/app");
     assertLoginCookieFlags(loginResponse);
     const cookieHeader = getCookieHeader(loginResponse);
     const appLocation = loginResponse.headers.get("location") ?? "/app";
@@ -202,9 +212,45 @@ async function main() {
       throw new Error(`Demo logout returned HTTP ${logoutResponse.status}`);
     }
 
+    assertRedirectLocation(logoutResponse, "/");
     const logoutCookie = logoutResponse.headers.get("set-cookie") ?? "";
     if (!logoutCookie.toLowerCase().includes("max-age=0")) {
       throw new Error("Demo logout did not expire the session cookie");
+    }
+
+    if (!externalUrl) {
+      const forwardedLoginResponse = await fetch(
+        new URL("/demo-login", baseUrl),
+        {
+          cache: "no-store",
+          headers: {
+            "x-forwarded-host": publicSmokeHost,
+            "x-forwarded-proto": "https",
+          },
+          redirect: "manual",
+        },
+      );
+      const forwardedLogoutResponse = await fetch(
+        new URL("/demo-logout", baseUrl),
+        {
+          cache: "no-store",
+          headers: {
+            cookie: cookieHeader,
+            "x-forwarded-host": publicSmokeHost,
+            "x-forwarded-proto": "https",
+          },
+          redirect: "manual",
+        },
+      );
+
+      if (
+        forwardedLoginResponse.headers.get("location") !==
+          `https://${publicSmokeHost}/app` ||
+        forwardedLogoutResponse.headers.get("location") !==
+          `https://${publicSmokeHost}/`
+      ) {
+        throw new Error("Forwarded Render redirect headers are not respected");
+      }
     }
 
     console.log(`Smoke test passed: ${baseUrl}`);

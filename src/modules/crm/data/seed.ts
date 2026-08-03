@@ -7,6 +7,16 @@ import type {
 
 type ActivitySeed = Omit<Activity, "dueLabel">;
 
+function dateAtOffset(daysFromToday: number, timeWithOffset: string) {
+  const date = new Date();
+  date.setDate(date.getDate() + daysFromToday);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}T${timeWithOffset}`;
+}
+
 export const accounts: Account[] = [
   {
     city: "Ribeirao Preto",
@@ -151,7 +161,7 @@ export const opportunities: Opportunity[] = [
 export const activities: ActivitySeed[] = [
   {
     accountId: "acc-aurora",
-    dueAt: "2026-08-02T14:00:00-03:00",
+    dueAt: dateAtOffset(0, "14:00:00-03:00"),
     id: "act-aurora-vistoria",
     notes: "Confirmar acesso ao barrilete e sala tecnica.",
     opportunityId: "opp-aurora-18kw",
@@ -161,7 +171,7 @@ export const activities: ActivitySeed[] = [
   },
   {
     accountId: "acc-padaria-central",
-    dueAt: "2026-08-03T10:30:00-03:00",
+    dueAt: dateAtOffset(1, "10:30:00-03:00"),
     id: "act-padaria-proposta",
     notes: "Revisar horario de pico e troca de medidor.",
     opportunityId: "opp-padaria-9kw",
@@ -171,7 +181,7 @@ export const activities: ActivitySeed[] = [
   },
   {
     accountId: "acc-agro-sol",
-    dueAt: "2026-08-04T09:00:00-03:00",
+    dueAt: dateAtOffset(2, "09:00:00-03:00"),
     id: "act-agro-equipe",
     notes: "Checar disponibilidade de equipe e caminhonete.",
     opportunityId: "opp-agro-48kw",
@@ -181,7 +191,7 @@ export const activities: ActivitySeed[] = [
   },
   {
     accountId: "acc-casa-martins",
-    dueAt: "2026-08-05T16:00:00-03:00",
+    dueAt: dateAtOffset(3, "16:00:00-03:00"),
     id: "act-martins-ligacao",
     notes: "Validar padrao de entrada e consumo mensal.",
     opportunityId: "opp-martins-6kw",
@@ -191,7 +201,7 @@ export const activities: ActivitySeed[] = [
   },
   {
     accountId: "acc-aurora",
-    dueAt: "2026-07-31T11:00:00-03:00",
+    dueAt: dateAtOffset(-1, "11:00:00-03:00"),
     id: "act-aurora-email",
     notes: "Conta de luz recebida e anexada ao dossie.",
     opportunityId: "opp-aurora-18kw",

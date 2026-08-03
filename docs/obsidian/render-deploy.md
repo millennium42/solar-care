@@ -77,13 +77,15 @@ O repo esta publico, entao o Render pode clonar `https://github.com/millennium42
 
 ## Smoke test Render
 
-Executado em 2026-08-02:
+Executado em 2026-08-02, antes do fluxo completo atual:
 
 - Deploy `dep-d9nqk3vlk1mc738l15d0`: `live`.
 - Home: `https://solar-care-web.onrender.com` retornou HTTP 200.
 - Conteudo verificado: `Solar Care Energia`, `Entrar no ERP`, `Solicitar diagnostico solar` e headline institucional.
 - Healthcheck: `https://solar-care-web.onrender.com/api/health` retornou HTTP 200.
 - Body do healthcheck inclui `ok`, `service`, `environment` e `uptime`.
+
+O smoke completo atual precisa ser reexecutado apos o proximo deploy, cobrindo landing, login demo, dashboard, CRM, Solar, assistente e logout.
 
 ## Rotas criticas atuais
 

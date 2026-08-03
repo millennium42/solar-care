@@ -52,6 +52,8 @@
 - RAG local criado em `/app/assistant` com busca lexical em docs Obsidian e seeds CRM/Solar, sem servico externo.
 - Guias de usuario, dev e mapa de modulos criados em `docs/obsidian/guides`.
 - Readiness Render atualizado com `.env.example`, healthcheck enriquecido, README e docs de deploy.
+- Revisao 03 encontrou P1 em redirects de `/demo-login` e `/demo-logout` no Render; corrigido usando `NEXT_PUBLIC_APP_URL` ou headers `x-forwarded-*`.
+- Smoke local da Revisao 03 passou apos correcoes, cobrindo landing, login demo, dashboard, CRM, Solar, assistente, logout e headers encaminhados do Render.
 
 ## Proximas acoes
 
