@@ -9,6 +9,7 @@ Este repositorio comeca como um pacote de governanca e prompts para conduzir a e
 - Git inicializado na branch `main`.
 - Repositorio GitHub remoto: [millennium42/solar-care](https://github.com/millennium42/solar-care).
 - Demo Render publicada: [solar-care-web.onrender.com](https://solar-care-web.onrender.com).
+- Smoke publico completo aprovado contra a URL Render.
 - Node LTS instalado via `nvm`; versao fixada em [.nvmrc](.nvmrc).
 - App Next.js com landing, login demo, dashboard ERP, CRM, operacoes solares, ferramentas de instaladora e assistente local.
 - Caminho ativo de desenvolvimento WSL: `/home/millennium42/solar-care`.
@@ -63,3 +64,4 @@ Contrato de deploy em [render.yaml](render.yaml):
 - healthcheck: `/api/health`
 - service: `solar-care-web`
 - environment group: `solar-care-production`
+- url: [https://solar-care-web.onrender.com](https://solar-care-web.onrender.com)

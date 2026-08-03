@@ -18,8 +18,9 @@
 - Workspace Render alvo: `Demos`.
 - Render service ID: `srv-d9nqk2vlk1mc738l13kg`.
 - Render deploy ID inicial: `dep-d9nqk3vlk1mc738l15d0`.
+- Render deploy completo mais recente: `dep-d9nu5sijnfac73bpap1g`.
 - URL publicada Render: `https://solar-care-web.onrender.com`.
-- `render.yaml` continua como contrato desejado de Blueprint/Environment Group, mas o conector disponivel nesta sessao criou Web Service direto e nao expos criacao/sync de Blueprint nem Environment Group.
+- `render.yaml` continua como contrato desejado de Blueprint/Environment Group, mas o conector disponivel nesta sessao criou Web Service direto e nao expos criacao/sync de Blueprint nem Environment Group; env vars publicas foram aplicadas diretamente no Web Service.
 - Skills canonicas versionadas em `.codex/skills` e sincronizadas para `${CODEX_HOME:-$HOME/.codex}/skills`.
 
 ## Decisoes
@@ -54,13 +55,13 @@
 - Readiness Render atualizado com `.env.example`, healthcheck enriquecido, README e docs de deploy.
 - Revisao 03 encontrou P1 em redirects de `/demo-login` e `/demo-logout` no Render; corrigido usando `NEXT_PUBLIC_APP_URL` ou headers `x-forwarded-*`.
 - Smoke local da Revisao 03 passou apos correcoes, cobrindo landing, login demo, dashboard, CRM, Solar, assistente, logout e headers encaminhados do Render.
+- Deploy Render `dep-d9nu5sijnfac73bpap1g` ficou `live` com commit `7e5fd18`; smoke publico completo passou em `https://solar-care-web.onrender.com`.
 
 ## Proximas acoes
 
-1. Push da branch `main` para `origin`.
-2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
-3. Executar Revisao 03 pre-deploy.
-4. Corrigir qualquer P0/P1 antes de seguir para o Commit 13.
+1. Executar Commit 14 de polish sem expandir escopo.
+2. Revalidar smoke publico apos o ultimo commit.
+3. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
 
 ## Ultima validacao local
 
@@ -89,6 +90,8 @@ Executada em 2026-08-02 no workspace WSL:
 - Deploy Render `dep-d9nqk3vlk1mc738l15d0`: status `live`.
 - Smoke Render em `https://solar-care-web.onrender.com`: passou.
 - Healthcheck Render `https://solar-care-web.onrender.com/api/health`: HTTP 200 com `{"ok":true,"service":"solar-care-web"}`.
+- Revisao 03 hardening: `npm run lint`, `npm run typecheck`, `npm audit --omit=dev`, `npm run build` e `npm run smoke` passaram.
+- Commit 13 Render: deploy `dep-d9nu5sijnfac73bpap1g` ficou `live`; `SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke` passou.
 
 ## Usuario demo sugerido
 

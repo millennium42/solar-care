@@ -14,7 +14,9 @@ Service ID: `srv-d9nqk2vlk1mc738l13kg`.
 
 Deploy inicial: `dep-d9nqk3vlk1mc738l15d0`, status `live`.
 
-Observacao: o conector Render disponivel nesta sessao criou Web Service direto e nao expos criacao/sync de Blueprint nem Environment Group. O arquivo [../../render.yaml](../../render.yaml) permanece como contrato desejado para alinhar o servico quando essa capacidade estiver disponivel.
+Deploy completo mais recente: `dep-d9nu5sijnfac73bpap1g`, status `live`, commit `7e5fd18`.
+
+Observacao: o conector Render disponivel nesta sessao criou Web Service direto e nao expos criacao/sync de Blueprint nem Environment Group. As variaveis foram aplicadas diretamente no Web Service para a demo; o arquivo [../../render.yaml](../../render.yaml) permanece como contrato desejado para alinhar o servico quando essa capacidade estiver disponivel.
 
 ## Pre-requisitos
 
@@ -77,7 +79,7 @@ O repo esta publico, entao o Render pode clonar `https://github.com/millennium42
 
 ## Smoke test Render
 
-Executado em 2026-08-02, antes do fluxo completo atual:
+Smoke inicial executado em 2026-08-02, antes do fluxo completo atual:
 
 - Deploy `dep-d9nqk3vlk1mc738l15d0`: `live`.
 - Home: `https://solar-care-web.onrender.com` retornou HTTP 200.
@@ -85,7 +87,12 @@ Executado em 2026-08-02, antes do fluxo completo atual:
 - Healthcheck: `https://solar-care-web.onrender.com/api/health` retornou HTTP 200.
 - Body do healthcheck inclui `ok`, `service`, `environment` e `uptime`.
 
-O smoke completo atual precisa ser reexecutado apos o proximo deploy, cobrindo landing, login demo, dashboard, CRM, Solar, assistente e logout.
+Smoke completo executado em 2026-08-02 local / 2026-08-03 UTC:
+
+- Deploy `dep-d9nu5sijnfac73bpap1g`: `live`.
+- Comando: `SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke`.
+- Resultado: passou.
+- Cobertura: landing, redirect de login demo, cookie de sessao, dashboard, CRM, Solar, assistente local e logout.
 
 ## Rotas criticas atuais
 
