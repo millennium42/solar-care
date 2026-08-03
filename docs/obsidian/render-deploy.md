@@ -92,7 +92,12 @@ Smoke completo executado em 2026-08-02 local / 2026-08-03 UTC:
 - Deploy `dep-d9nu5sijnfac73bpap1g`: `live`.
 - Comando: `SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke`.
 - Resultado: passou.
-- Cobertura: landing, redirect de login demo, cookie de sessao, dashboard, CRM, Solar, assistente local e logout.
+- Cobertura: landing, redirect de login demo com destino publico, cookie de sessao, dashboard, CRM, Solar, assistente local e logout.
+
+Smoke de polish final executado em 2026-08-02 local / 2026-08-03 UTC:
+
+- Comando: `SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke`.
+- Resultado: passou com comparacao exata de redirects por `pathname` e `search`.
 
 ## Rotas criticas atuais
 
@@ -104,7 +109,7 @@ Smoke completo executado em 2026-08-02 local / 2026-08-03 UTC:
 - `/app/assistant?q=documento`
 - `/api/health`
 
-O smoke local exercita login, cookie, dashboard, CRM, Solar, assistente e logout. O smoke de producao deve usar:
+O smoke local exercita login, cookie, dashboard, CRM, Solar, assistente e logout. Ele valida redirects por `pathname` e `search`, incluindo simulacao de headers `x-forwarded-*` do Render. O smoke de producao deve usar:
 
 ```bash
 SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke

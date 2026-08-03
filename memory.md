@@ -56,12 +56,12 @@
 - Revisao 03 encontrou P1 em redirects de `/demo-login` e `/demo-logout` no Render; corrigido usando `NEXT_PUBLIC_APP_URL` ou headers `x-forwarded-*`.
 - Smoke local da Revisao 03 passou apos correcoes, cobrindo landing, login demo, dashboard, CRM, Solar, assistente, logout e headers encaminhados do Render.
 - Deploy Render `dep-d9nu5sijnfac73bpap1g` ficou `live` com commit `7e5fd18`; smoke publico completo passou em `https://solar-care-web.onrender.com`.
+- Polish final endureceu o smoke para comparar redirects por `pathname` e `search`, evitando falso positivo em redirects para `/`.
 
 ## Proximas acoes
 
-1. Executar Commit 14 de polish sem expandir escopo.
-2. Revalidar smoke publico apos o ultimo commit.
-3. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
+1. Sem acao bloqueante para a demonstracao MVP publicada.
+2. Quando o conector Render expuser Blueprint/Environment Group, alinhar o servico live ao `render.yaml` ou recriar via Blueprint.
 
 ## Ultima validacao local
 
@@ -92,6 +92,7 @@ Executada em 2026-08-02 no workspace WSL:
 - Healthcheck Render `https://solar-care-web.onrender.com/api/health`: HTTP 200 com `{"ok":true,"service":"solar-care-web"}`.
 - Revisao 03 hardening: `npm run lint`, `npm run typecheck`, `npm audit --omit=dev`, `npm run build` e `npm run smoke` passaram.
 - Commit 13 Render: deploy `dep-d9nu5sijnfac73bpap1g` ficou `live`; `SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke` passou.
+- Commit 14 polish: `npm run lint`, `npm run typecheck`, `npm run build`, `npm run smoke` e `SMOKE_TEST_URL=https://solar-care-web.onrender.com npm run smoke` passaram.
 
 ## Usuario demo sugerido
 

@@ -76,9 +76,18 @@ function getCookieHeader(response) {
 }
 
 function assertRedirectLocation(response, expectedPath) {
-  const location = response.headers.get("location") ?? "";
+  const location = response.headers.get("location");
 
-  if (!location.endsWith(expectedPath) || location.includes("localhost")) {
+  if (!location) {
+    throw new Error("Redirect response did not include a Location header");
+  }
+
+  const actualUrl = new URL(location, baseUrl);
+  const expectedUrl = new URL(expectedPath, baseUrl);
+  const actualPath = `${actualUrl.pathname}${actualUrl.search}`;
+  const expectedTarget = `${expectedUrl.pathname}${expectedUrl.search}`;
+
+  if (actualPath !== expectedTarget || actualUrl.hostname === "localhost") {
     throw new Error(`Unexpected redirect location: ${location}`);
   }
 }
@@ -104,17 +113,17 @@ async function assertRedirects(path, expectedLocation) {
     cache: "no-store",
     redirect: "manual",
   });
-  const location = response.headers.get("location") ?? "";
 
   if (
     response.status < 300 ||
-    response.status > 399 ||
-    !location.endsWith(expectedLocation)
+    response.status > 399
   ) {
     throw new Error(
       `${path} did not redirect to ${expectedLocation}; HTTP ${response.status}`,
     );
   }
+
+  assertRedirectLocation(response, expectedLocation);
 }
 
 async function main() {

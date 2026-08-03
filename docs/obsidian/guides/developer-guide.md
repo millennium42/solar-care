@@ -52,6 +52,8 @@ O smoke em [../../../scripts/smoke-test.mjs](../../../scripts/smoke-test.mjs) va
 - `/app/assistant`;
 - logout.
 
+Os redirects sao comparados por `pathname` e `search`, nao por sufixo textual, para detectar desvios como `/app/` quando o esperado e `/`. Em execucao local, o smoke tambem simula `x-forwarded-host` e `x-forwarded-proto` do Render.
+
 ## Comandos
 
 ```bash
